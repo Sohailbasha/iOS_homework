@@ -29,7 +29,7 @@ class NetworkController {
     
     static func url(bbyAdding parameters: [String : String]?, to url: URL) -> URL {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
-        components?.queryItems = parameters?.flatMap({URLQueryItem(name: $0.0, value: $0.1)})
+        components?.queryItems = parameters?.compactMap({URLQueryItem(name: $0.0, value: $0.1)})
         
         guard let url = components?.url else {
             fatalError("URL optional is nil")
