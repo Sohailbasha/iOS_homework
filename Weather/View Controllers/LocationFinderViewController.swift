@@ -6,13 +6,11 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
-    let locationManager = LocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.commonInit()
-        
     }
     
     override func viewWillLayoutSubviews() {
@@ -26,7 +24,7 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
 extension LocationFinderViewController {
     
     func commonInit() {
-        stackView.axis  = UILayoutConstraintAxis.vertical
+        stackView.axis = UILayoutConstraintAxis.vertical
         stackView.distribution = UIStackViewDistribution.equalSpacing
         stackView.alignment = UIStackViewAlignment.center
         stackView.spacing = 10.0
@@ -67,12 +65,11 @@ extension LocationFinderViewController {
 extension LocationFinderViewController {
     
     @objc func showAlert() {
-        Alert.showEnterLocationAlert(in: self,
-                                     with: "Enter a location",
-                                     message: "To recieve up-to-date weather forecasts")
+        Alert.showEnterLocationAlert(in: self) // callbacks lat/lon/city name
     }
     
     @objc func fetchLocation() {
-        LocationManager.sharedInstance.authorizeLocaiton(in: self)
+        self.dismiss(animated: true) {}
+//        LocationManager.sharedInstance.authorizeLocaiton(in: self)
     }
 }
