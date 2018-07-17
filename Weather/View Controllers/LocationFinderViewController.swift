@@ -6,10 +6,19 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager.startUpdatingLocation()
+        }
+        
         self.commonInit()
     }
     
@@ -65,11 +74,29 @@ extension LocationFinderViewController {
 extension LocationFinderViewController {
     
     @objc func showAlert() {
-        Alert.showEnterLocationAlert(in: self) // callbacks lat/lon/city name
+        Alert.showEnterLocationAlert(in: self)
+        // callbacks lat/lon/city name
     }
     
     @objc func fetchLocation() {
-        self.dismiss(animated: true) {}
-//        LocationManager.sharedInstance.authorizeLocaiton(in: self)
+        locationManager.startUpdatingLocation()
+    }
+}
+
+// MARK: - Location Manager Methods
+extension LocationFinderViewController {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        } else {
+            Alert.requestAuthorizationAlert(in: self)
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+           print(location)
+        }
+        locationManager.stopUpdatingLocation()
     }
 }

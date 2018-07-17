@@ -40,6 +40,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 if let city = placemarks?.first?.locality {
                     print(city)
                 }
+                
+                // TODO: Callback city and location
+                
             } else {
                 Alert.showLocationInputErrorAlert(in: vc, location: cityOrZip)
             }

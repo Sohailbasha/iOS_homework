@@ -14,6 +14,11 @@ struct Alert {
     static func showLocationInputErrorAlert(in vc: UIViewController, location: String) {
         self.showErrorAlert(in: vc, with: "Unable to find \(location)")
     }
+    
+    static func requestAuthorizationAlert(in vc: UIViewController) {
+        self.showErrorAlert(in: vc, with: "Please allow app to use location data in settings")
+    }
+    
 
     private static func showBasicAlert(in vc: UIViewController, with title: String, message: String? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
