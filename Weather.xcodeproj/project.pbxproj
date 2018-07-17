@@ -14,6 +14,7 @@
 		FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */; };
 		FD32A9E220FD975800923EDB /* Location + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9E120FD975800923EDB /* Location + Convenience.swift */; };
 		FDE2391320FE5106006E356B /* LocationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391220FE5106006E356B /* LocationLogic.swift */; };
+		FDE2391620FE6CEA006E356B /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391520FE6CEA006E356B /* WeatherLogic.swift */; };
 		FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4398420FD6591004B12C1 /* AppDelegate.swift */; };
 		FDE4398A20FD6591004B12C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDE4398820FD6591004B12C1 /* Main.storyboard */; };
 		FDE4398C20FD6592004B12C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE4398B20FD6592004B12C1 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 		FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weather + Convenience.swift"; sourceTree = "<group>"; };
 		FD32A9E120FD975800923EDB /* Location + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location + Convenience.swift"; sourceTree = "<group>"; };
 		FDE2391220FE5106006E356B /* LocationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLogic.swift; sourceTree = "<group>"; };
+		FDE2391520FE6CEA006E356B /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 		FDE4398120FD6591004B12C1 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDE4398420FD6591004B12C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDE4398920FD6591004B12C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE2391220FE5106006E356B /* LocationLogic.swift */,
+				FDE2391520FE6CEA006E356B /* WeatherLogic.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */,
 				FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */,
 				FD32A9DE20FD962E00923EDB /* CoreDataStack.swift in Sources */,
+				FDE2391620FE6CEA006E356B /* WeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

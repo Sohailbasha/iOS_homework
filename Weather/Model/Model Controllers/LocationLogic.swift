@@ -7,6 +7,8 @@ class LocationLogic {
     func createLocation(name: String, lat: Double, lon: Double) {
         
         _ = Location(locationName: name, lat: lat, lon: lon)
+        // add weatherdata
+        
         saveToPersistentStore()
     }
     

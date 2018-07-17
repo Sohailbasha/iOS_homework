@@ -6,32 +6,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     static let sharedInstance = LocationManager()
     
-    var coreLocationManager: CLLocationManager!
-    var currentLocation: CLLocation?
     
-    func authorizeLocaiton(in vc: CLLocationManagerDelegate) {
-        coreLocationManager = CLLocationManager()
-        coreLocationManager.delegate = vc
-        coreLocationManager.requestWhenInUseAuthorization()
-        coreLocationManager.startUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            coreLocationManager.startUpdatingLocation()
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let location = locations.last {
-            currentLocation = CLLocation(latitude: location.coordinate.latitude,
-                                         longitude: location.coordinate.longitude)
-        }
-        coreLocationManager.stopUpdatingLocation()
-    }
-    
-    func updateLocationFor(cityOrZip: String, vc: UIViewController) {
-        CLGeocoder().geocodeAddressString(cityOrZip) { (placemarks, error) in
+    func getLocationData(from inputString: String, vc: UIViewController) {
+        CLGeocoder().geocodeAddressString(inputString) { (placemarks, error) in
             if error == nil {
                 if let location = placemarks?.first?.location {
                     print(location)
@@ -44,7 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 // TODO: Callback city and location
                 
             } else {
-                Alert.showLocationInputErrorAlert(in: vc, location: cityOrZip)
+                Alert.showLocationInputErrorAlert(in: vc, inputString: inputString)
             }
         }
     }

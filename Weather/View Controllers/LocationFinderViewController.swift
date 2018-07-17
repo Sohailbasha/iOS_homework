@@ -96,7 +96,18 @@ extension LocationFinderViewController {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
            print(location)
+            // create and callback a location object
+            
         }
         locationManager.stopUpdatingLocation()
     }
 }
+
+
+
+
+
+
+
+
+

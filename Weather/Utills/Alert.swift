@@ -4,15 +4,15 @@ import UIKit
 struct Alert {
     
     static func showEnterLocationAlert(in vc: UIViewController) {
-        self.showBasicAlert(in: vc, with: "Enter a location", message: "To recieve up-to-date weather forecasts")
+        self.showBasicLocationAlert(in: vc, with: "Enter a location", message: "To recieve up-to-date weather forecasts")
     }
     
     static func showAddLocationAlert(in vc: UIViewController) {
-        self.showBasicAlert(in: vc, with: "Add a new location")
+        self.showBasicLocationAlert(in: vc, with: "Add a new location")
     }
     
-    static func showLocationInputErrorAlert(in vc: UIViewController, location: String) {
-        self.showErrorAlert(in: vc, with: "Unable to find \(location)")
+    static func showLocationInputErrorAlert(in vc: UIViewController, inputString: String) {
+        self.showErrorAlert(in: vc, with: "Unable to find \(inputString)")
     }
     
     static func requestAuthorizationAlert(in vc: UIViewController) {
@@ -20,7 +20,7 @@ struct Alert {
     }
     
 
-    private static func showBasicAlert(in vc: UIViewController, with title: String, message: String? = nil) {
+    private static func showBasicLocationAlert(in vc: UIViewController, with title: String, message: String? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         var tf: UITextField?
         
@@ -31,10 +31,10 @@ struct Alert {
         
         let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             if let text = tf?.text, !text.isEmpty {
-                LocationManager.sharedInstance.updateLocationFor(cityOrZip: text, vc: vc)
+                LocationManager.sharedInstance.getLocationData(from: text, vc: vc)
             }
-            
         }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(okayAction)
         alertController.addAction(cancelAction)
