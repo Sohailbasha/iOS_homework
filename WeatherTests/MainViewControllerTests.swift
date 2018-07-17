@@ -1,4 +1,5 @@
 import XCTest
+@testable import Weather
 
 class MainViewControllerTests: XCTestCase {
     
