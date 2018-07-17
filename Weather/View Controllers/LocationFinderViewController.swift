@@ -43,7 +43,6 @@ extension LocationFinderViewController {
         locateMeButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         locateMeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         locateMeButton.showsTouchWhenHighlighted = true
-        
         stackView.addArrangedSubview(locateMeButton)
     }
     
@@ -55,13 +54,17 @@ extension LocationFinderViewController {
         enterLocationButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         enterLocationButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         enterLocationButton.showsTouchWhenHighlighted = true
+        enterLocationButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
         stackView.addArrangedSubview(enterLocationButton)
     }
 }
 
 // MARK: - Helper Methods
 extension LocationFinderViewController {
-    func showAlert() {
-        
+    
+    @objc func showAlert() {
+        Alert.showEnterLocationAlert(in: self,
+                                     with: "Enter a location",
+                                     message: "To recieve up-to-date weather forecasts")
     }
 }

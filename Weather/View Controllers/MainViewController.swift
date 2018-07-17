@@ -4,6 +4,8 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let vc = LocationFinderViewController()
+        self.present(vc, animated: true, completion: nil)
     }
 
     
