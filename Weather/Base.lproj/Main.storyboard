@@ -22,12 +22,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="dug-T3-X09"/>
                     <connections>
-                        <segue destination="pk5-jE-IcO" kind="presentation" identifier="showLocationFinder" id="nlB-hk-3uu"/>
+                        <segue destination="pk5-jE-IcO" kind="show" identifier="showLocationFinder" id="nlB-hk-3uu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cCG-Jw-Ezf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="734" y="131"/>
+            <point key="canvasLocation" x="633" y="130"/>
         </scene>
         <!--LocationFinder-->
         <scene sceneID="xRV-hL-zuK">
@@ -53,7 +53,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Fl-Qx-6oT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-12" y="130.88455772113943"/>
+            <point key="canvasLocation" x="-290" y="130"/>
         </scene>
     </scenes>
 </document>

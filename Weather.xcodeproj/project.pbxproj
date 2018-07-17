@@ -15,6 +15,7 @@
 		FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4399920FD78A0004B12C1 /* NetworkController.swift */; };
 		FDE439AC20FD7A00004B12C1 /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */; };
 		FDE439AE20FD7B1D004B12C1 /* LocationFinder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDE439AD20FD7B1D004B12C1 /* LocationFinder.storyboard */; };
+		FDE439B020FD7C01004B12C1 /* LocationFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE439AF20FD7C01004B12C1 /* LocationFinderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		FDE439AA20FD7A00004B12C1 /* WeatherTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
 		FDE439AD20FD7B1D004B12C1 /* LocationFinder.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationFinder.storyboard; sourceTree = "<group>"; };
+		FDE439AF20FD7C01004B12C1 /* LocationFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFinderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE4399620FD6738004B12C1 /* MainViewController.swift */,
+				FDE439AF20FD7C01004B12C1 /* LocationFinderViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */,
+				FDE439B020FD7C01004B12C1 /* LocationFinderViewController.swift in Sources */,
 				FDE4399720FD6738004B12C1 /* MainViewController.swift in Sources */,
 				FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */,
 			);

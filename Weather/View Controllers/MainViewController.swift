@@ -4,6 +4,7 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        performSegue(withIdentifier: "showLocationFinder", sender: self)
     }
 
     
