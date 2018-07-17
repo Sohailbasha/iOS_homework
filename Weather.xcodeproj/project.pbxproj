@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D520FD8D1800923EDB /* Alert.swift */; };
 		FD32A9D820FD921100923EDB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D720FD921100923EDB /* LocationManager.swift */; };
+		FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */; };
+		FD32A9DE20FD962E00923EDB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */; };
+		FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */; };
+		FD32A9E220FD975800923EDB /* Location + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9E120FD975800923EDB /* Location + Convenience.swift */; };
 		FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4398420FD6591004B12C1 /* AppDelegate.swift */; };
 		FDE4398A20FD6591004B12C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDE4398820FD6591004B12C1 /* Main.storyboard */; };
 		FDE4398C20FD6592004B12C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE4398B20FD6592004B12C1 /* Assets.xcassets */; };
@@ -32,6 +36,10 @@
 /* Begin PBXFileReference section */
 		FD32A9D520FD8D1800923EDB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FD32A9D720FD921100923EDB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
+		FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weather + Convenience.swift"; sourceTree = "<group>"; };
+		FD32A9E120FD975800923EDB /* Location + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location + Convenience.swift"; sourceTree = "<group>"; };
 		FDE4398120FD6591004B12C1 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDE4398420FD6591004B12C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDE4398920FD6591004B12C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -65,6 +73,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD32A9DC20FD92B100923EDB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */,
+				FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */,
+				FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */,
+				FD32A9E120FD975800923EDB /* Location + Convenience.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		FDE4397820FD6591004B12C1 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE4398420FD6591004B12C1 /* AppDelegate.swift */,
+				FD32A9DC20FD92B100923EDB /* Model */,
 				FDE4399820FD6745004B12C1 /* View Controllers */,
 				FDE4399B20FD78BC004B12C1 /* Utills */,
 				FDE4398820FD6591004B12C1 /* Main.storyboard */,
@@ -228,12 +248,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD32A9E220FD975800923EDB /* Location + Convenience.swift in Sources */,
 				FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */,
+				FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */,
 				FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */,
+				FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */,
 				FD32A9D820FD921100923EDB /* LocationManager.swift in Sources */,
 				FDE4399720FD6738004B12C1 /* MainViewController.swift in Sources */,
 				FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */,
 				FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */,
+				FD32A9DE20FD962E00923EDB /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +525,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */,
+			);
+			currentVersion = FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */;
+			path = Weather.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FDE4397920FD6591004B12C1 /* Project object */;
 }
