@@ -1,5 +1,4 @@
 import UIKit
-import UIKit
 
 class MainViewController: UIViewController {
 
@@ -7,9 +6,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
 
     /*
