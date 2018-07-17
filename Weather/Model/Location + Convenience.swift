@@ -10,4 +10,5 @@ extension Location {
         self.lat = lat
         self.lon = lon
     }
+    
 }
