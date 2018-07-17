@@ -4,11 +4,13 @@ class LocationLogic {
     
     static let sharedInstance = LocationLogic()
     
-    func createLocation(name: String, lat: Double, lon: Double) {
-
-        _ = Location(locationName: name, lat: lat, lon: lon)
-        // add weatherdata
-        
+    var locations: [Location] {
+        let request: NSFetchRequest<Location> = Location.fetchRequest()
+        return (try? CoreDataStack.context.fetch(request)) ?? []
+    }
+    
+    func createLocation(isCurrentLocation: Bool, lat: Double, lon: Double) {
+        _ = Location(isCurrentLocation: isCurrentLocation, lat: lat, lon: lon)
         saveToPersistentStore()
     }
     

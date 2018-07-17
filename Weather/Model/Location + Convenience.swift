@@ -3,10 +3,10 @@ import CoreData
 
 extension Location {
     
-    convenience init(locationName: String, lat: Double, lon: Double, context: NSManagedObjectContext = CoreDataStack.context) {
+    convenience init(isCurrentLocation: Bool, lat: Double, lon: Double, context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         
-        self.locationName = locationName
+        self.isCurrentLocation = isCurrentLocation
         self.lat = lat
         self.lon = lon
     }

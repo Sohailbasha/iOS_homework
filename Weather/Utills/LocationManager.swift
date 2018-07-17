@@ -18,6 +18,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                     print(city)
                 }
                 
+                // create a city
                 // TODO: Callback city and location
                 
             } else {

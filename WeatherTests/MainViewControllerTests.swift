@@ -11,5 +11,7 @@ class MainViewControllerTests: XCTestCase {
         super.tearDown()
     }
     
-    
+    func testLocation() {
+        
+    }
 }
