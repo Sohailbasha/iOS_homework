@@ -1,15 +1,18 @@
 import UIKit
+import CoreLocation
 
-class LocationFinderViewController: UIViewController {
+class LocationFinderViewController: UIViewController, CLLocationManagerDelegate {
 
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
+    let locationManager = LocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.commonInit()
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -43,6 +46,7 @@ extension LocationFinderViewController {
         locateMeButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         locateMeButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         locateMeButton.showsTouchWhenHighlighted = true
+        locateMeButton.addTarget(self, action: #selector(fetchLocation), for: .touchUpInside)
         stackView.addArrangedSubview(locateMeButton)
     }
     
@@ -66,5 +70,9 @@ extension LocationFinderViewController {
         Alert.showEnterLocationAlert(in: self,
                                      with: "Enter a location",
                                      message: "To recieve up-to-date weather forecasts")
+    }
+    
+    @objc func fetchLocation() {
+        LocationManager.sharedInstance.authorizeLocaiton(in: self)
     }
 }
