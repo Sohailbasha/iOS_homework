@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D520FD8D1800923EDB /* Alert.swift */; };
 		FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4398420FD6591004B12C1 /* AppDelegate.swift */; };
 		FDE4398A20FD6591004B12C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FDE4398820FD6591004B12C1 /* Main.storyboard */; };
 		FDE4398C20FD6592004B12C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDE4398B20FD6592004B12C1 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 		FDE4399720FD6738004B12C1 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4399620FD6738004B12C1 /* MainViewController.swift */; };
 		FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE4399920FD78A0004B12C1 /* NetworkController.swift */; };
 		FDE439AC20FD7A00004B12C1 /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */; };
+		FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE439B120FD81DF004B12C1 /* LocationFinderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD32A9D520FD8D1800923EDB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FDE4398120FD6591004B12C1 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDE4398420FD6591004B12C1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDE4398920FD6591004B12C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 		FDE439A420FD79D8004B12C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDE439AA20FD7A00004B12C1 /* WeatherTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
+		FDE439B120FD81DF004B12C1 /* LocationFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFinderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE4399620FD6738004B12C1 /* MainViewController.swift */,
+				FDE439B120FD81DF004B12C1 /* LocationFinderViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE4399920FD78A0004B12C1 /* NetworkController.swift */,
+				FD32A9D520FD8D1800923EDB /* Alert.swift */,
 			);
 			path = Utills;
 			sourceTree = "<group>";
@@ -220,7 +226,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */,
+				FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */,
 				FDE4399720FD6738004B12C1 /* MainViewController.swift in Sources */,
+				FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */,
 				FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
