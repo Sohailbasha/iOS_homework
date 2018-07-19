@@ -31,7 +31,7 @@ struct Alert {
         
         let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             if let text = tf?.text, !text.isEmpty {
-                LocationManager.sharedInstance.getLocationData(from: text, vc: vc)
+                LocationGeocoder.sharedInstance.getLocationData(from: text, vc: vc)
             }
         }
         

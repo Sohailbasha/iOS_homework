@@ -2,9 +2,9 @@ import Foundation
 import CoreLocation
 import UIKit
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationGeocoder: NSObject, CLLocationManagerDelegate {
     
-    static let sharedInstance = LocationManager()
+    static let sharedInstance = LocationGeocoder()
     
     
     func getLocationData(from inputString: String, vc: UIViewController) {

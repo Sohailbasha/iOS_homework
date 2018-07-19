@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D520FD8D1800923EDB /* Alert.swift */; };
-		FD32A9D820FD921100923EDB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D720FD921100923EDB /* LocationManager.swift */; };
+		FD32A9D820FD921100923EDB /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D720FD921100923EDB /* LocationGeocoder.swift */; };
 		FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */; };
 		FD32A9DE20FD962E00923EDB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */; };
 		FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */; };
@@ -39,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		FD32A9D520FD8D1800923EDB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		FD32A9D720FD921100923EDB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		FD32A9D720FD921100923EDB /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
 		FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
 		FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weather + Convenience.swift"; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 			children = (
 				FDE4399920FD78A0004B12C1 /* NetworkController.swift */,
 				FD32A9D520FD8D1800923EDB /* Alert.swift */,
-				FD32A9D720FD921100923EDB /* LocationManager.swift */,
+				FD32A9D720FD921100923EDB /* LocationGeocoder.swift */,
 			);
 			path = Utills;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */,
 				FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */,
 				FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */,
-				FD32A9D820FD921100923EDB /* LocationManager.swift in Sources */,
+				FD32A9D820FD921100923EDB /* LocationGeocoder.swift in Sources */,
 				FDE4399720FD6738004B12C1 /* MainViewController.swift in Sources */,
 				FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */,
 				FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */,
