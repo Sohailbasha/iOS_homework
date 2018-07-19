@@ -1,17 +1,12 @@
 import UIKit
 import CoreLocation
 
-protocol LocationDelegate {
-    func fetch(isCurrentLocaiton: Bool, lat: Double, lon: Double)
-}
-
 class LocationFinderViewController: UIViewController, CLLocationManagerDelegate {
 
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
     let locationManager = CLLocationManager()
-    var delegate: LocationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +75,6 @@ extension LocationFinderViewController {
     
     @objc func showAlert() {
         self.showInputLocationAlert(with: "Enter a location")
-        // callbacks lat/lon/city name
     }
     
     @objc func fetchLocation() {
@@ -102,12 +96,7 @@ extension LocationFinderViewController {
                         Alert.showAddLocationAlert(in: self)
                     }
                     if let location = location {
-                        self.delegate?.fetch(isCurrentLocaiton: false, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
-                        /*
-                         LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
-                         lat: location.coordinate.latitude,
-                         lon: location.coordinate.longitude
-                         */
+                        print(location)
                     }
                 })
             }
@@ -132,16 +121,7 @@ extension LocationFinderViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            
-            self.delegate?.fetch(isCurrentLocaiton: true,
-                                 lat: location.coordinate.latitude,
-                                 lon: location.coordinate.longitude)
-            
-            /*
-            LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
-                                                        lat: location.coordinate.latitude,
-                                                        lon: location.coordinate.longitude
-            */
+            print(location)
         }
         locationManager.stopUpdatingLocation()
     }

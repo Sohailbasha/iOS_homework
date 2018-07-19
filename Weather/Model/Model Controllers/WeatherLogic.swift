@@ -7,7 +7,7 @@ class WeatherLogic {
     let baseURL: String = "https://api.darksky.net/forecast/41ca2cd5a5e9bd8f6a40ee15d20bf9ca/"
 
     
-    func fetchWeatherData(for location: Location, completion: @escaping (_ forecast: [WeatherViewModel]) -> Void) {
+    func fetchWeatherData(for location: Location, completion: @escaping (_ forecast: [Weather?]) -> Void) {
         guard let url = URL(string: baseURL + "\(location.lat),\(location.lon)") else {
             return
         }
@@ -34,9 +34,9 @@ class WeatherLogic {
                 return
             }
             
-            let weatherViewModels = weatherDataDictionary.map {return WeatherViewModel(weather: Weather(location: location, dictionary: $0))}
+            let forecast = weatherDataDictionary.map{ Weather(location: location, dictionary: $0) }
             
-            completion(weatherViewModels)
+            completion(forecast)
         }
     }
     
