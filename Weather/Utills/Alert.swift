@@ -31,7 +31,9 @@ struct Alert {
         
         let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             if let text = tf?.text, !text.isEmpty {
-                LocationGeocoder.sharedInstance.getLocationData(from: text, vc: vc)
+                LocationGeocoder.sharedInstance.getLocationData(from: text, vc: vc, completion: { (location) in
+                    let locatin = Location(isCurrentLocation: false, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+                })
             }
         }
         
@@ -49,3 +51,6 @@ struct Alert {
         vc.present(alertController, animated: true, completion: nil)
     }
 }
+
+
+
