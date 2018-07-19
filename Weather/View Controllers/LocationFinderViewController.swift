@@ -97,12 +97,10 @@ extension LocationFinderViewController {
         if let location = locations.last {
            print(location)
             // create and callback a location object
-            
         }
         locationManager.stopUpdatingLocation()
     }
 }
-
 
 
 

@@ -1,7 +1,8 @@
 import XCTest
 @testable import Weather
 
-class MainViewControllerTests: XCTestCase {
+
+class LocationTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -9,6 +10,11 @@ class MainViewControllerTests: XCTestCase {
     
     override func tearDown() {
         super.tearDown()
+    }
+ 
+    
+    func testLocation() {
+        
     }
     
 }
