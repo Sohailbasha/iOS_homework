@@ -26,6 +26,7 @@
 		FDE439AC20FD7A00004B12C1 /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */; };
 		FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE439B120FD81DF004B12C1 /* LocationFinderViewController.swift */; };
 		FDFA5D35210101C6003FAD09 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5D34210101C6003FAD09 /* LocationViewModel.swift */; };
+		FDFA5D3821010675003FAD09 /* TestWeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDFA5D3721010675003FAD09 /* TestWeatherLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,10 +59,10 @@
 		FDE4399920FD78A0004B12C1 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		FDE439A020FD79D8004B12C1 /* WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDE439A420FD79D8004B12C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FDE439AA20FD7A00004B12C1 /* WeatherTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WeatherTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
 		FDE439B120FD81DF004B12C1 /* LocationFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFinderViewController.swift; sourceTree = "<group>"; };
 		FDFA5D34210101C6003FAD09 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		FDFA5D3721010675003FAD09 /* TestWeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestWeatherLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,7 +163,7 @@
 				FDE439A420FD79D8004B12C1 /* Info.plist */,
 				FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */,
 				FDE2391720FE7EE5006E356B /* LocationTests.swift */,
-				FDE439AA20FD7A00004B12C1 /* WeatherTests-Bridging-Header.h */,
+				FDFA5D3721010675003FAD09 /* TestWeatherLogic.swift */,
 			);
 			path = WeatherTests;
 			sourceTree = "<group>";
@@ -300,6 +301,7 @@
 				FDE2391920FE7FB3006E356B /* Weather.xcdatamodeld in Sources */,
 				FDE2391820FE7EE5006E356B /* LocationTests.swift in Sources */,
 				FDE439AC20FD7A00004B12C1 /* MainViewControllerTests.swift in Sources */,
+				FDFA5D3821010675003FAD09 /* TestWeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,8 +31,17 @@ struct Alert {
         
         let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             if let text = tf?.text, !text.isEmpty {
-                LocationGeocoder.sharedInstance.getLocationData(from: text, vc: vc, completion: { (location) in
-                    let locatin = Location(isCurrentLocation: false, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+                LocationGeocoder.getLocationData(from: text, completion: { (location, error) in
+                    if let _ = error {
+                        Alert.showAddLocationAlert(in: vc)
+                    }
+                    
+                    if let location = location {
+                        let inputLocation = Location(isCurrentLocation: false,
+                                                     lat: location.coordinate.latitude,
+                                                     lon: location.coordinate.longitude)
+                        print(inputLocation)
+                    }
                 })
             }
         }

@@ -4,17 +4,14 @@ import UIKit
 
 class LocationGeocoder: NSObject, CLLocationManagerDelegate {
     
-    static let sharedInstance = LocationGeocoder()
-    
-    
-    func getLocationData(from inputString: String, vc: UIViewController, completion: @escaping (_ location: CLLocation) -> Void) {
+    static func getLocationData(from inputString: String, completion: @escaping (_ location: CLLocation?, _ error: Error?) -> Void) {
         CLGeocoder().geocodeAddressString(inputString) { (placemarks, error) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    completion(location)
+                    completion(location, nil)
                 }
             } else {
-                Alert.showLocationInputErrorAlert(in: vc, inputString: inputString)
+                completion(nil, error)
             }
         }
     }
