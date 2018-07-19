@@ -7,6 +7,8 @@ class LocationLogic {
     
     var locations: [Location] {
         let request: NSFetchRequest<Location> = Location.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
+        request.sortDescriptors = [sortDescriptor]
         return (try? CoreDataStack.context.fetch(request)) ?? []
     }
     

@@ -1,12 +1,17 @@
 import UIKit
 import CoreLocation
 
+protocol LocationDelegate {
+    func fetch(isCurrentLocaiton: Bool, lat: Double, lon: Double)
+}
+
 class LocationFinderViewController: UIViewController, CLLocationManagerDelegate {
 
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
     let locationManager = CLLocationManager()
+    var delegate: LocationDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +79,46 @@ extension LocationFinderViewController {
 extension LocationFinderViewController {
     
     @objc func showAlert() {
-        Alert.showEnterLocationAlert(in: self)
+        self.showInputLocationAlert(with: "Enter a location")
         // callbacks lat/lon/city name
     }
     
     @objc func fetchLocation() {
         locationManager.startUpdatingLocation()
+    }
+    
+    func showInputLocationAlert(with title: String, message: String? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        var tf: UITextField?
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter zipcode, city, or state"
+            tf = textField
+        }
+        let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+            if let text = tf?.text, !text.isEmpty {
+                LocationGeocoder.getLocationData(from: text, completion: { (location, error) in
+                    if let _ = error {
+                        Alert.showAddLocationAlert(in: self)
+                    }
+                    if let location = location {
+                        self.delegate?.fetch(isCurrentLocaiton: false, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+                        /*
+                         LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
+                         lat: location.coordinate.latitude,
+                         lon: location.coordinate.longitude
+                         */
+                    }
+                })
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(okayAction)
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -88,15 +127,21 @@ extension LocationFinderViewController {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.startUpdatingLocation()
-        } else {
-            Alert.requestAuthorizationAlert(in: self)
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-           print(location)
-            // create and callback a location object
+            
+            self.delegate?.fetch(isCurrentLocaiton: true,
+                                 lat: location.coordinate.latitude,
+                                 lon: location.coordinate.longitude)
+            
+            /*
+            LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
+                                                        lat: location.coordinate.latitude,
+                                                        lon: location.coordinate.longitude
+            */
         }
         locationManager.stopUpdatingLocation()
     }

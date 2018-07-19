@@ -3,6 +3,8 @@ import UIKit
 
 struct Alert {
     
+    // ALERTS FOR ERRORS //
+    
     static func showEnterLocationAlert(in vc: UIViewController) {
         self.showBasicLocationAlert(in: vc, with: "Enter a location", message: "To recieve up-to-date weather forecasts")
     }
