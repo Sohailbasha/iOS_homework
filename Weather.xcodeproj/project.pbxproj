@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD159164210156B000CE855E /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */; };
 		FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D520FD8D1800923EDB /* Alert.swift */; };
 		FD32A9D820FD921100923EDB /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D720FD921100923EDB /* LocationGeocoder.swift */; };
 		FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
 		FD32A9D520FD8D1800923EDB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FD32A9D720FD921100923EDB /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
 		FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD159165210156B700CE855E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		FD32A9DC20FD92B100923EDB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				FDE4398420FD6591004B12C1 /* AppDelegate.swift */,
+				FD159165210156B700CE855E /* View */,
 				FD32A9DC20FD92B100923EDB /* Model */,
 				FDE4399820FD6745004B12C1 /* View Controllers */,
 				FDE4399B20FD78BC004B12C1 /* Utills */,
@@ -278,6 +289,7 @@
 				FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */,
 				FDE4399A20FD78A0004B12C1 /* NetworkController.swift in Sources */,
 				FD32A9DE20FD962E00923EDB /* CoreDataStack.swift in Sources */,
+				FD159164210156B000CE855E /* WeatherCollectionViewCell.swift in Sources */,
 				FDE2391620FE6CEA006E356B /* WeatherLogic.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
