@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    var forecast: [Weather?] = [] {
+    var forecast: [WeatherViewModel] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -56,7 +56,9 @@ class MainViewController: UIViewController {
     func fetchWeatherForLocation() {
         let location = Location(isCurrentLocation: false, lat: 40.696011, lon: -73.993286)
         WeatherLogic.sharedInstance.fetchWeatherData(for: location) { (forecast) in
-            self.forecast = forecast
+            let weatherViewModels: [WeatherViewModel] = forecast.compactMap{return WeatherViewModel(weather: $0)}
+            
+            self.forecast = weatherViewModels
         }
     }
 }
@@ -66,10 +68,9 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? WeatherCollectionViewCell
         
-        guard let weather = forecast[indexPath.row] else {
-            return UICollectionViewCell()
-        }
-        cell?.temperatureLabel.text = "\(weather.maxTemp)°"
+        let weatherViewModel = forecast[indexPath.row]
+        
+        cell?.temperatureLabel.text = weatherViewModel.maxTempText
         return cell ?? UICollectionViewCell()
     }
     

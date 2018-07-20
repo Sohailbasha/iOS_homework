@@ -4,13 +4,13 @@ import UIKit
 struct WeatherViewModel {
     
     let weather: Weather
-    let tempMaxText: String
-    let tempMinText: String
+    let maxTempText: String?
+    let minTempText: String?
     
-    init(weather: Weather) {
+    init?(weather: Weather){
         self.weather = weather
-        self.tempMaxText = "\(weather.maxTemp)°"
-        self.tempMinText = "\(weather.minTemp)°"
+        self.maxTempText = "\(weather.maxTemp)°"
+        self.minTempText = "\(weather.minTemp)°"
     }
     
 }
