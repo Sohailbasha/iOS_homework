@@ -12,8 +12,6 @@ class WeatherLogic {
             return
         }
         
-        print(url)
-        
         NetworkController.performRequest(for: url, httpMethod: .get) { (data, error) in
             if let _ = error {
                 print("error getting weather data for location")

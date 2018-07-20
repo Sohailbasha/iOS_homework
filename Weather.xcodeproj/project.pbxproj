@@ -14,6 +14,8 @@
 		FD32A9DE20FD962E00923EDB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */; };
 		FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */; };
 		FD32A9E220FD975800923EDB /* Location + Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9E120FD975800923EDB /* Location + Convenience.swift */; };
+		FD63041A210277C5002D14B2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD630419210277C5002D14B2 /* WeatherViewModel.swift */; };
+		FD63041C2102780C002D14B2 /* WeatherViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD63041B2102780C002D14B2 /* WeatherViewModelTest.swift */; };
 		FDE2391320FE5106006E356B /* LocationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391220FE5106006E356B /* LocationLogic.swift */; };
 		FDE2391620FE6CEA006E356B /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391520FE6CEA006E356B /* WeatherLogic.swift */; };
 		FDE2391820FE7EE5006E356B /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391720FE7EE5006E356B /* LocationTests.swift */; };
@@ -47,6 +49,8 @@
 		FD32A9DD20FD962E00923EDB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Weather + Convenience.swift"; sourceTree = "<group>"; };
 		FD32A9E120FD975800923EDB /* Location + Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location + Convenience.swift"; sourceTree = "<group>"; };
+		FD630419210277C5002D14B2 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		FD63041B2102780C002D14B2 /* WeatherViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModelTest.swift; sourceTree = "<group>"; };
 		FDE2391220FE5106006E356B /* LocationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLogic.swift; sourceTree = "<group>"; };
 		FDE2391520FE6CEA006E356B /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
 		FDE2391720FE7EE5006E356B /* LocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 				FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */,
 				FD32A9E120FD975800923EDB /* Location + Convenience.swift */,
 				FDE2391420FE5109006E356B /* Model Controllers */,
+				FD630419210277C5002D14B2 /* WeatherViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 			children = (
 				FDE439A420FD79D8004B12C1 /* Info.plist */,
 				FDE439AB20FD7A00004B12C1 /* MainViewControllerTests.swift */,
+				FD63041B2102780C002D14B2 /* WeatherViewModelTest.swift */,
 				FDE2391720FE7EE5006E356B /* LocationTests.swift */,
 				FDFA5D3721010675003FAD09 /* TestWeatherLogic.swift */,
 			);
@@ -281,6 +287,7 @@
 				FD32A9E220FD975800923EDB /* Location + Convenience.swift in Sources */,
 				FDE2391320FE5106006E356B /* LocationLogic.swift in Sources */,
 				FDE4398520FD6591004B12C1 /* AppDelegate.swift in Sources */,
+				FD63041A210277C5002D14B2 /* WeatherViewModel.swift in Sources */,
 				FD32A9E020FD967F00923EDB /* Weather + Convenience.swift in Sources */,
 				FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */,
 				FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */,
@@ -300,6 +307,7 @@
 			files = (
 				FDE2391920FE7FB3006E356B /* Weather.xcdatamodeld in Sources */,
 				FDE2391820FE7EE5006E356B /* LocationTests.swift in Sources */,
+				FD63041C2102780C002D14B2 /* WeatherViewModelTest.swift in Sources */,
 				FDE439AC20FD7A00004B12C1 /* MainViewControllerTests.swift in Sources */,
 				FDFA5D3821010675003FAD09 /* TestWeatherLogic.swift in Sources */,
 			);
