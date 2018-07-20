@@ -12,12 +12,15 @@ class WeatherLogic {
             return
         }
         
+        print(url)
+        
         NetworkController.performRequest(for: url, httpMethod: .get) { (data, error) in
             if let _ = error {
                 print("error getting weather data for location")
             }
             
-            guard let data = data else { return }
+            guard let data = data else {
+                return }
             
             guard let serializedData = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any] else {
                 completion([])

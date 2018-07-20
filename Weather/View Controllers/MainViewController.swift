@@ -13,6 +13,12 @@ class MainViewController: UIViewController {
         collectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.delegate = self
         collectionView.dataSource = self
+        let location = Location(isCurrentLocation: false, lat: 40.696011, lon: -73.993286)
+        WeatherLogic.sharedInstance.fetchWeatherData(for: location) { (forecast) in
+            for i in forecast {
+                print("MAX TEMP: \(i)")
+            }
+        }
     }
     
     // MARK: - Navigation
