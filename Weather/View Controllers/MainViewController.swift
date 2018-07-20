@@ -3,7 +3,7 @@ import UIKit
 class MainViewController: UIViewController {
 
     private let cellID = "detailCell"
-    
+    let kSidePadding: CGFloat = 20
     private var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
@@ -80,7 +80,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 100)
+        return CGSize(width: UIScreen.main.bounds.width - kSidePadding, height: 100)
     }
 }
 
