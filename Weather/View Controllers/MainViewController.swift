@@ -23,6 +23,8 @@ class MainViewController: UIViewController {
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
+        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,9 +49,9 @@ class MainViewController: UIViewController {
     
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 1
+        layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
-        cv.backgroundColor = UIColor.blue
+        cv.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
         return cv
     }()
     
@@ -69,8 +71,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? WeatherCollectionViewCell
         
         let weatherViewModel = forecast[indexPath.row]
-        
-        cell?.temperatureLabel.text = weatherViewModel.maxTempText
+        cell?.weatherViewModel = weatherViewModel
         return cell ?? UICollectionViewCell()
     }
     
