@@ -7,12 +7,14 @@ extension Weather {
         self.init(context: context)
         guard let timeStamp = dictionary[WeatherKeys.timeStamp.rawValue] as? Int,
             let maxTemp = dictionary[WeatherKeys.maxTemp.rawValue] as? Double,
-            let minTemp = dictionary[WeatherKeys.minTemp.rawValue] as? Double else { return nil }
+            let minTemp = dictionary[WeatherKeys.minTemp.rawValue] as? Double,
+            let icon = dictionary[WeatherKeys.icon.rawValue] as? String else { return nil }
         
         self.location = location
         self.timeStamp = Int64(timeStamp)
         self.maxTemp = maxTemp
         self.minTemp = minTemp
+        self.icon = icon
     }
 }
 
@@ -20,4 +22,5 @@ enum WeatherKeys: String {
     case timeStamp = "time"
     case maxTemp = "temperatureHigh"
     case minTemp = "temperatureLow"
+    case icon = "icon"
 }

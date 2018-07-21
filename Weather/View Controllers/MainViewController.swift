@@ -51,6 +51,8 @@ class MainViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
+        cv.contentInset = UIEdgeInsetsMake(10, 0, 10, 0)
+        
         cv.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
         return cv
     }()
@@ -71,6 +73,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as? WeatherCollectionViewCell
         
         let weatherViewModel = forecast[indexPath.row]
+        print(weatherViewModel.weather.icon!)
         cell?.weatherViewModel = weatherViewModel
         return cell ?? UICollectionViewCell()
     }

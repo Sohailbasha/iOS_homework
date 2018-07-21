@@ -21,6 +21,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
                 maxTempLabel.text = vm.maxTempText
                 minTempLabel.text = vm.minTempText
                 dateLabel.text = vm.dateText()
+                iconImageView.image = vm.weatherImage()
             }
         }
     }
@@ -29,6 +30,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     var maxTempLabel: UILabel = {
         let label = UILabel()
         label.text = " - "
+        label.font = UIFont(name: "Lucida Grande", size: 5)
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -36,6 +39,8 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     var minTempLabel: UILabel = {
         let label = UILabel()
         label.text = " - "
+        label.font = UIFont(name: "Lucida Grande", size: 5)
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -43,15 +48,25 @@ class WeatherCollectionViewCell: UICollectionViewCell {
     var dateLabel: UILabel = {
         let label = UILabel()
         label.text = " - "
-        label.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        label.font = UIFont(name: "Lucida Grande", size: 5)
         label.textAlignment = .left
+        label.textColor = #colorLiteral(red: 0.6509803922, green: 0.768627451, blue: 0.8666666667, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
+    var iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     func setupViews() {
-        self.backgroundColor = .white
+        self.backgroundColor = #colorLiteral(red: 0.1254901961, green: 0.4705882353, blue: 0.862745098, alpha: 1)
+        self.layer.cornerRadius = 10
         setupRightStack()
+        setupImageView()
         setupLeftLabel()
     }
     
@@ -81,9 +96,17 @@ extension WeatherCollectionViewCell {
     
     func setupLeftLabel() {
         self.addSubview(dateLabel)
-        dateLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        dateLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         dateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
         dateLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
         dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 8).isActive = true
+    }
+    
+    func setupImageView() {
+        self.addSubview(iconImageView)
+        iconImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        iconImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        iconImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
+        iconImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
 }

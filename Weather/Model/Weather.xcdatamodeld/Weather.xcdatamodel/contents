@@ -7,6 +7,7 @@
         <relationship name="weather" toMany="YES" deletionRule="Cascade" destinationEntity="Weather" inverseName="location" inverseEntity="Weather" syncable="YES"/>
     </entity>
     <entity name="Weather" representedClassName="Weather" syncable="YES" codeGenerationType="class">
+        <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="maxTemp" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="minTemp" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="timeStamp" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -14,6 +15,6 @@
     </entity>
     <elements>
         <element name="Location" positionX="-54" positionY="18" width="128" height="105"/>
-        <element name="Weather" positionX="162" positionY="33" width="128" height="105"/>
+        <element name="Weather" positionX="162" positionY="33" width="128" height="120"/>
     </elements>
 </model>

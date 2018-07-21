@@ -28,4 +28,10 @@ struct WeatherViewModel {
         return strDate
     }
     
+    func weatherImage() -> UIImage {
+        guard let iconString = weather.icon else { return UIImage() }
+        guard let iconImage = UIImage(named: iconString) else { return UIImage() }
+        return iconImage
+    }
+    
 }
