@@ -49,7 +49,6 @@ extension LocationFinderViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             locationManager.startUpdatingLocation()
         }
-//        locationManager.startUpdatingLocation()
     }
     
     func showInputLocationAlert(with title: String, message: String? = nil) {

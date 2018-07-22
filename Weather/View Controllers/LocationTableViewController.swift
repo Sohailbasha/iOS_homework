@@ -1,10 +1,31 @@
 import UIKit
 import CoreData
 
-class LocationTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class LocationTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let objvc = LocationTableViewController()
+        let aObjNavi = UINavigationController(rootViewController: objvc)
+
+        
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0,
+                                                                    y: 0,
+                                                                    width: UIScreen.main.bounds.width,
+                                                                    height: 44))
+        
+        self.title = "SomeTitle"
+        let navItem = UINavigationItem(title: "SomeTitle");
+        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
+                                       target: nil, action: #selector(something));
+        
+        navItem.rightBarButtonItem = doneItem;
+        navBar.setItems([navItem], animated: false);
+        self.view.addSubview(navBar)
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "locationCell")
+        tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -12,6 +33,12 @@ class LocationTableViewController: UITableViewController, NSFetchedResultsContro
             print("Error starting fetched results controller: \(error)")
         }
     }
+    
+    @objc func something() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0

@@ -102,7 +102,10 @@ extension MainViewController {
     }
     
     @objc func locationsList() {
-        performSegue(withIdentifier: "showLocationsSegue", sender: self)
+        let viewController = LocationTableViewController()
+        viewController.modalTransitionStyle = .crossDissolve
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.present(viewController, animated: true, completion: nil)
     }
 
 }
