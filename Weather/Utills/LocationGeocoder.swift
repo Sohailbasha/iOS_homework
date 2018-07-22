@@ -16,21 +16,15 @@ class LocationGeocoder: NSObject, CLLocationManagerDelegate {
         }
     }
     
-    static func locationName(location: Location) -> String {
-        var locaitonName = ""
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: location.lat, longitude: location.lon)
-        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            if error == nil {
-                if let locality = placemarks?.first?.locality {
-                   locaitonName = locality
-                }
-            } else {
-                locaitonName = ""
+    static func geolocate(location: Location, completion: @escaping (CLPlacemark?, Error?) -> ()) {
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: location.lat, longitude: location.lon)) { (placemarks, error) in
+            guard let placemark = placemarks?.first, error == nil else {
+                completion(nil, error)
+                return
             }
+            completion(placemark, nil)
         }
-        return locaitonName
     }
-    
+
 }
 

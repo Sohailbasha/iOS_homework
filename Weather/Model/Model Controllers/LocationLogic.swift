@@ -17,6 +17,13 @@ class LocationLogic {
         saveToPersistentStore()
     }
     
+    func delete(location: Location) {
+        if let moc = location.managedObjectContext {
+            moc.delete(location)
+        }
+        saveToPersistentStore()
+    }
+    
     func saveToPersistentStore() {
         let moc = CoreDataStack.context
         do {
