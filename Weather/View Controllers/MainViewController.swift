@@ -30,9 +30,8 @@ class MainViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if LocationLogic.sharedInstance.locations.isEmpty {
             print("LOCATIONS IS EMPTY")
@@ -44,7 +43,6 @@ class MainViewController: UIViewController {
         }
     }
     
-
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "findLocationSegue" {
