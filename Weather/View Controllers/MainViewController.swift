@@ -10,7 +10,6 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.largeTitleDisplayMode = .always
         
-
         self.view.addSubview(collectionView)
         collectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
         collectionView.delegate = self
@@ -24,14 +23,14 @@ class MainViewController: UIViewController {
         
         if LocationLogic.sharedInstance.locations.isEmpty {
             print("LOCATIONS IS EMPTY")
+            performSegue(withIdentifier: "findLocationSegue", sender: self)
+            /*
             LocationLogic.sharedInstance.createLocation(isCurrentLocation: false, lat: 40.696011, lon: -73.993286)
+            */
         } else {
             print("LOCATION IS NOT EMPTY")
-            guard let location = LocationLogic.sharedInstance.locations.first else {
-                return
-            }
-            
-            self.getWeatherDataFor(location: location)
+            guard let location = LocationLogic.sharedInstance.locations.first else { return }
+            self.location = location
         }
         
         let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: nil)
@@ -46,6 +45,22 @@ class MainViewController: UIViewController {
         }
     }
     
+    var location: Location? {
+        didSet {
+            
+            if let location = location {
+                self.getWeatherDataFor(location: location)
+                LocationGeocoder.geolocate(location: location) { (placemark, error) in
+                    guard let placemark = placemark else { return }
+                    DispatchQueue.main.async {
+                        self.title = placemark.locality!
+                    }
+                }
+            }
+            
+        }
+    }
+    
     var forecast: [WeatherViewModel] = [] {
         didSet {
             
@@ -54,12 +69,6 @@ class MainViewController: UIViewController {
                 self.activityIndicator.stopAnimating()
             }
             
-            LocationGeocoder.geolocate(location: (forecast.first?.weather.location)!) { (placemark, error) in
-                guard let placemark = placemark else { return }
-                DispatchQueue.main.async {
-                    self.title = placemark.locality!
-                }
-            }
         }
     }
     
@@ -72,7 +81,6 @@ class MainViewController: UIViewController {
         return cv
     }()
     
-   
 }
 
 // MARK: - Helper Methods
@@ -84,6 +92,10 @@ extension MainViewController {
             let weatherViewModels: [WeatherViewModel] = forecast.compactMap{return WeatherViewModel(weather: $0)}
             self.forecast = weatherViewModels
         }
+    }
+    
+    func locationsList() {
+        // show list of locaitons
     }
 
 }
