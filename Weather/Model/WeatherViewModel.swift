@@ -34,10 +34,4 @@ struct WeatherViewModel {
         return iconImage
     }
     
-    func locationName() -> String {
-        var cityName = ""
-        
-        return cityName
-    }
-    
 }

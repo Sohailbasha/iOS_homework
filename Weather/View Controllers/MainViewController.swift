@@ -21,20 +21,24 @@ class MainViewController: UIViewController {
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         
+        
+        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         if LocationLogic.sharedInstance.locations.isEmpty {
             print("LOCATIONS IS EMPTY")
             performSegue(withIdentifier: "findLocationSegue", sender: self)
-            /*
-            LocationLogic.sharedInstance.createLocation(isCurrentLocation: false, lat: 40.696011, lon: -73.993286)
-            */
         } else {
             print("LOCATION IS NOT EMPTY")
             guard let location = LocationLogic.sharedInstance.locations.first else { return }
             self.location = location
         }
         
-        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
 

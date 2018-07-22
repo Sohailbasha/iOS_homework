@@ -8,17 +8,22 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
     var stackView = UIStackView()
     let locationManager = CLLocationManager()
     
+    var currentLocation: CLLocation? {
+        didSet {
+            if let currentLocation = self.currentLocation {
+                DispatchQueue.main.async {
+                    LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
+                                                                lat: currentLocation.coordinate.latitude,
+                                                                lon: currentLocation.coordinate.longitude)
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        locationManager.requestWhenInUseAuthorization()
-        
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-            locationManager.startUpdatingLocation()
-        }
-        
         self.commonInit()
     }
     
@@ -37,7 +42,14 @@ extension LocationFinderViewController {
     }
     
     @objc func fetchLocation() {
-        locationManager.startUpdatingLocation()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager.startUpdatingLocation()
+        }
+//        locationManager.startUpdatingLocation()
     }
     
     func showInputLocationAlert(with title: String, message: String? = nil) {
@@ -55,7 +67,9 @@ extension LocationFinderViewController {
                         Alert.showAddLocationAlert(in: self)
                     }
                     if let location = location {
-                        print(location)
+                            LocationLogic.sharedInstance.createLocation(isCurrentLocation: false,
+                                                                        lat: location.coordinate.latitude,
+                                                                        lon: location.coordinate.longitude)
                     }
                 })
             }
@@ -80,7 +94,7 @@ extension LocationFinderViewController {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
-            print(location)
+            self.currentLocation = location
         }
         locationManager.stopUpdatingLocation()
     }
