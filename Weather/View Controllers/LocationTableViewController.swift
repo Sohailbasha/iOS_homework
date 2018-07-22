@@ -1,31 +1,37 @@
 import UIKit
 import CoreData
 
-class LocationTableViewController: UITableViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate {
+class LocationTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let objvc = LocationTableViewController()
-        let aObjNavi = UINavigationController(rootViewController: objvc)
-
-        
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "locationCell")
+        self.view.addSubview(tableView)
         let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0,
                                                                     y: 0,
                                                                     width: UIScreen.main.bounds.width,
-                                                                    height: 44))
+                                                                    height: 100))
         
         self.title = "SomeTitle"
         let navItem = UINavigationItem(title: "SomeTitle");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
-                                       target: nil, action: #selector(something));
+                                       target: nil,
+                                       action: #selector(something))
         
-        navItem.rightBarButtonItem = doneItem;
-        navBar.setItems([navItem], animated: false);
+        let addItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                      target: nil,
+                                      action: #selector(somethingElse))
+        
+        navItem.rightBarButtonItem = addItem
+        navItem.leftBarButtonItem = doneItem
+        navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "locationCell")
-        tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
+        
+       
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -34,13 +40,31 @@ class LocationTableViewController: UITableViewController, NSFetchedResultsContro
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        tableView.frame = self.view.frame
+        tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
+    }
+    
     @objc func something() {
         self.dismiss(animated: true, completion: nil)
     }
+    @objc func somethingElse() {
+        Alert.showAddLocationAlert(in: self)
+    }
     
+    lazy var tableView: UITableView = {
+        let tv = UITableView(frame: .zero, style: .plain)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.backgroundColor = .lightGray
+        tv.delegate = self
+        tv.dataSource = self
+        tv.register(UITableViewCell.self, forCellReuseIdentifier: "isCurrentLocation")
+        return tv
+    }()
     
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0
     }
     
@@ -55,7 +79,7 @@ class LocationTableViewController: UITableViewController, NSFetchedResultsContro
     }()
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
         guard let location = fetchedResultsController.fetchedObjects?[indexPath.row] else { return UITableViewCell() }
         cell.textLabel?.text = "\(location.lat), \(location.lon)"

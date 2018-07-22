@@ -39,10 +39,7 @@ struct Alert {
                     }
                     
                     if let location = location {
-                        let inputLocation = Location(isCurrentLocation: false,
-                                                     lat: location.coordinate.latitude,
-                                                     lon: location.coordinate.longitude)
-                        print(inputLocation)
+                        LocationLogic.sharedInstance.createLocation(isCurrentLocation: false, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
                     }
                 })
             }
