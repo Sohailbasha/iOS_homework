@@ -27,13 +27,14 @@ class LocationTableViewController: UITableViewController, NSFetchedResultsContro
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
     }()
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
+        guard let location = fetchedResultsController.fetchedObjects?[indexPath.row] else { return UITableViewCell() }
+        cell.textLabel?.text = "\(location.lat), \(location.lon)"
         return cell
     }
-    */
+    
 
 }
 

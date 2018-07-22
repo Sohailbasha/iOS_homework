@@ -22,7 +22,11 @@ class MainViewController: UIViewController {
         activityIndicator.startAnimating()
         
         
-        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: nil)
+        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(locationsList))
+        
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
@@ -38,7 +42,6 @@ class MainViewController: UIViewController {
             guard let location = LocationLogic.sharedInstance.locations.first else { return }
             self.location = location
         }
-        
     }
     
 
@@ -98,8 +101,8 @@ extension MainViewController {
         }
     }
     
-    func locationsList() {
-        // show list of locaitons
+    @objc func locationsList() {
+        performSegue(withIdentifier: "showLocationsSegue", sender: self)
     }
 
 }
