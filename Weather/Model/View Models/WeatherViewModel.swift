@@ -37,4 +37,10 @@ struct WeatherViewModel {
         return iconImage
     }
     
+    func precipProbability() -> String {
+        let precipPercentage = weather.precipProbability * 100
+        let roundedPercentage = Int(precipPercentage.rounded())
+        return "Precip: \(roundedPercentage) %"
+    }
+    
 }
