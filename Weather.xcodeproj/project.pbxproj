@@ -105,9 +105,17 @@
 				FD32A9DF20FD967F00923EDB /* Weather + Convenience.swift */,
 				FD32A9E120FD975800923EDB /* Location + Convenience.swift */,
 				FDE2391420FE5109006E356B /* Model Controllers */,
-				FD630419210277C5002D14B2 /* WeatherViewModel.swift */,
+				FD3F78E8210621BF0000562E /* View Models */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FD3F78E8210621BF0000562E /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				FD630419210277C5002D14B2 /* WeatherViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		FDE2391420FE5109006E356B /* Model Controllers */ = {

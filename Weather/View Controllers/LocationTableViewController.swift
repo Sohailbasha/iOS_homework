@@ -5,6 +5,23 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
 
     var delegate: LocationSelectDelegate?
     
+    lazy var tableView: UITableView = {
+        let tv = UITableView(frame: .zero, style: .plain)
+        tv.translatesAutoresizingMaskIntoConstraints = false
+        tv.backgroundColor = .white
+        tv.delegate = self
+        tv.dataSource = self
+        tv.register(UITableViewCell.self, forCellReuseIdentifier: "isCurrentLocation")
+        return tv
+    }()
+    
+    let fetchedResultsController: NSFetchedResultsController<Location> = {
+        let fetchRequest: NSFetchRequest<Location> = Location.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,34 +67,14 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     @objc func something() {
         self.dismiss(animated: true, completion: nil)
     }
+    
     @objc func somethingElse() {
         Alert.showAddLocationAlert(in: self)
     }
     
-    lazy var tableView: UITableView = {
-        let tv = UITableView(frame: .zero, style: .plain)
-        tv.translatesAutoresizingMaskIntoConstraints = false
-        tv.backgroundColor = .white
-        tv.delegate = self
-        tv.dataSource = self
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "isCurrentLocation")
-        return tv
-    }()
-    
-    let fetchedResultsController: NSFetchedResultsController<Location> = {
-        let fetchRequest: NSFetchRequest<Location> = Location.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
-    }()
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0
     }
-    
-    
-
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "locationCell", for: indexPath)
@@ -87,6 +84,7 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         }
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let location = fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
@@ -142,7 +140,7 @@ extension LocationTableViewController {
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
-    
+
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
