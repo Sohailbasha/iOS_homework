@@ -3,6 +3,8 @@ import CoreData
 
 class LocationTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    var delegate: LocationSelectDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,17 +64,19 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         return tv
     }()
     
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return fetchedResultsController.fetchedObjects?.count ?? 0
-    }
-    
     let fetchedResultsController: NSFetchedResultsController<Location> = {
         let fetchRequest: NSFetchRequest<Location> = Location.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
     }()
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return fetchedResultsController.fetchedObjects?.count ?? 0
+    }
+    
+    
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +86,12 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
             cell.textLabel?.text = city
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let location = fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
+        delegate?.didSelect(location: location)
+        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -138,4 +148,8 @@ extension LocationTableViewController {
         tableView.endUpdates()
     }
     
+}
+
+protocol LocationSelectDelegate {
+    func didSelect(location: Location)
 }

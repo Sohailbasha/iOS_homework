@@ -33,6 +33,9 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let location = self.location {
+            self.getWeatherDataFor(location: location)
+        }
         if LocationLogic.sharedInstance.locations.isEmpty {
             print("LOCATIONS IS EMPTY")
             performSegue(withIdentifier: "findLocationSegue", sender: self)
@@ -52,7 +55,6 @@ class MainViewController: UIViewController {
     
     var location: Location? {
         didSet {
-            
             if let location = location {
                 self.getWeatherDataFor(location: location)
                 LocationGeocoder.geolocate(location: location) { (placemark, error) in
@@ -68,7 +70,6 @@ class MainViewController: UIViewController {
     
     var forecast: [WeatherViewModel] = [] {
         didSet {
-            
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
                 self.activityIndicator.stopAnimating()
@@ -101,6 +102,7 @@ extension MainViewController {
     
     @objc func locationsList() {
         let viewController = LocationTableViewController()
+        viewController.delegate = self
         viewController.modalTransitionStyle = .crossDissolve
         viewController.modalPresentationStyle = .overCurrentContext
         self.present(viewController, animated: true, completion: nil)
@@ -127,3 +129,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 }
 
+extension MainViewController: LocationSelectDelegate {
+    func didSelect(location: Location) {
+        self.location = location
+    }
+}
