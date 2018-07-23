@@ -127,6 +127,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width - kSidePadding, height: 100)
     }
+    
+    
 }
 
 extension MainViewController: LocationSelectDelegate {
