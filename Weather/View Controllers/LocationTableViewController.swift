@@ -4,6 +4,7 @@ import CoreData
 class LocationTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var delegate: LocationSelectDelegate?
+    var navBar = UINavigationBar()
     
     lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
@@ -24,32 +25,32 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "locationCell")
         self.view.addSubview(tableView)
         
-        
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0,
-                                                                    y: 0,
-                                                                    width: UIScreen.main.bounds.width,
-                                                                    height: 44))
-        
-        let navItem = UINavigationItem(title: "Locations");
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
-                                       target: nil,
-                                       action: #selector(something))
-        
-        let addItem = UIBarButtonItem(barButtonSystemItem: .search,
-                                      target: nil,
-                                      action: #selector(somethingElse))
-        
-        navItem.rightBarButtonItem = addItem
-        navItem.leftBarButtonItem = doneItem
-        navBar.setItems([navItem], animated: false)
+        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        navBar.delegate = self
+        self.title = "Locations"
         self.view.addSubview(navBar)
-       
+
+        
+//        let navItem = UINavigationItem(title: "Locations");
+//        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
+//                                       target: nil,
+//                                       action: #selector(something))
+//
+//        let addItem = UIBarButtonItem(barButtonSystemItem: .search,
+//                                      target: nil,
+//                                      action: #selector(somethingElse))
+//
+//        navItem.rightBarButtonItem = addItem
+//        navItem.leftBarButtonItem = doneItem
+//        navBar.setItems([navItem], animated: false)
+
+        
+        
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -61,8 +62,12 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         tableView.frame = self.view.frame
-        tableView.contentInset = UIEdgeInsetsMake(44, 0, 0, 0)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        navBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
+
     }
+    
+    
     
     @objc func something() {
         self.dismiss(animated: true, completion: nil)
@@ -111,7 +116,6 @@ extension LocationTableViewController {
         tableView.beginUpdates()
     }
     
-    
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         switch type {
         case .insert:
@@ -122,7 +126,6 @@ extension LocationTableViewController {
             break
         }
     }
-    
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
@@ -141,11 +144,15 @@ extension LocationTableViewController {
         }
     }
 
-    
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    
+}
+
+extension LocationTableViewController: UIBarPositioningDelegate {
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
+    }
 }
 
 protocol LocationSelectDelegate {

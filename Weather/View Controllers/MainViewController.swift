@@ -104,8 +104,9 @@ extension MainViewController {
         let viewController = LocationTableViewController()
         viewController.delegate = self
         viewController.modalTransitionStyle = .crossDissolve
-        viewController.modalPresentationStyle = .overCurrentContext
-        self.present(viewController, animated: true, completion: nil)
+        let navBarOnModal: UINavigationController = UINavigationController(rootViewController: viewController)
+        navBarOnModal.modalPresentationStyle = .overCurrentContext
+        self.present(navBarOnModal, animated: true, completion: nil)
     }
 
 }
