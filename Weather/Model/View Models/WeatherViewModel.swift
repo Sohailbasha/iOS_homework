@@ -6,13 +6,15 @@ struct WeatherViewModel {
     let weather: Weather
     let maxTempText: String?
     let minTempText: String?
+    let summaryText: String?
     private let timeStamp: Int?
     
     init?(weather: Weather){
         self.weather = weather
-        self.maxTempText = "High \(weather.maxTemp)°"
-        self.minTempText = "Low \(weather.minTemp)°"
+        self.maxTempText = "\(Int(weather.maxTemp.rounded()))°"
+        self.minTempText = "\(Int(weather.minTemp.rounded()))°"
         self.timeStamp = Int(weather.timeStamp)
+        self.summaryText = weather.summary
     }
     
     
@@ -22,7 +24,8 @@ struct WeatherViewModel {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone.current
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "MMMM dd"
+        dateFormatter.dateFormat = "EEEE"
+//        "MMMM dd"
 //        "MMMM dd, yyyy"
         let strDate = dateFormatter.string(from: date)
         return strDate

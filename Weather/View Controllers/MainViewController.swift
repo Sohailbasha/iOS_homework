@@ -128,6 +128,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         return CGSize(width: UIScreen.main.bounds.width - kSidePadding, height: 100)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewController = WeatherDetailViewController()
+        viewController.weatherViewModel = forecast[indexPath.row]
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
     
 }
 

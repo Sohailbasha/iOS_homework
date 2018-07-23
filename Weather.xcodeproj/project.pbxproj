@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FD159164210156B000CE855E /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */; };
+		FD1BE09C2106599A00A1B621 /* WeatehrDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD1BE09B2106599A00A1B621 /* WeatehrDetailViewController.xib */; };
 		FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D520FD8D1800923EDB /* Alert.swift */; };
 		FD32A9D820FD921100923EDB /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D720FD921100923EDB /* LocationGeocoder.swift */; };
 		FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		FD1BE09B2106599A00A1B621 /* WeatehrDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatehrDetailViewController.xib; sourceTree = "<group>"; };
 		FD32A9D520FD8D1800923EDB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FD32A9D720FD921100923EDB /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
 		FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 			children = (
 				FDE4399620FD6738004B12C1 /* MainViewController.swift */,
 				FD3F78E9210624C30000562E /* WeatherDetailViewController.swift */,
+				FD1BE09B2106599A00A1B621 /* WeatehrDetailViewController.xib */,
 				FDE439B120FD81DF004B12C1 /* LocationFinderViewController.swift */,
 				FDC257292105296F0046D82C /* LocationTableViewController.swift */,
 			);
@@ -280,6 +283,7 @@
 			files = (
 				FDE4398F20FD6592004B12C1 /* LaunchScreen.storyboard in Resources */,
 				FDE4398C20FD6592004B12C1 /* Assets.xcassets in Resources */,
+				FD1BE09C2106599A00A1B621 /* WeatehrDetailViewController.xib in Resources */,
 				FDE4398A20FD6591004B12C1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

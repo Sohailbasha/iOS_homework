@@ -40,7 +40,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = " - "
         label.font = UIFont(name: "Lucida Grande", size: 5)
-        label.textColor = .white
+        label.textColor = #colorLiteral(red: 0.6509803922, green: 0.768627451, blue: 0.8666666667, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -74,7 +74,7 @@ class WeatherCollectionViewCell: UICollectionViewCell {
 // MARK: - Setup Funcs
 extension WeatherCollectionViewCell {
     func setupRightStack() {
-        stackView.axis = UILayoutConstraintAxis.vertical
+        stackView.axis = UILayoutConstraintAxis.horizontal
         stackView.distribution = UIStackViewDistribution.equalSpacing
         stackView.alignment = UIStackViewAlignment.center
         stackView.spacing = 0.0
@@ -85,10 +85,10 @@ extension WeatherCollectionViewCell {
         self.addSubview(stackView)
         
         maxTempLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        maxTempLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        maxTempLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
         minTempLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        minTempLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        minTempLabel.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8).isActive = true
