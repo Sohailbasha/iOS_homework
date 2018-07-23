@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FD159164210156B000CE855E /* WeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */; };
+		FD1BE0A0210697DD00A1B621 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD1BE09F210697DD00A1B621 /* LocationViewModel.swift */; };
 		FD32A9D620FD8D1800923EDB /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D520FD8D1800923EDB /* Alert.swift */; };
 		FD32A9D820FD921100923EDB /* LocationGeocoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D720FD921100923EDB /* LocationGeocoder.swift */; };
 		FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FD32A9D920FD92AD00923EDB /* Weather.xcdatamodeld */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		FD159163210156B000CE855E /* WeatherCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCollectionViewCell.swift; sourceTree = "<group>"; };
+		FD1BE09F210697DD00A1B621 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		FD32A9D520FD8D1800923EDB /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		FD32A9D720FD921100923EDB /* LocationGeocoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationGeocoder.swift; sourceTree = "<group>"; };
 		FD32A9DA20FD92AD00923EDB /* Weather.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather.xcdatamodel; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				FD630419210277C5002D14B2 /* WeatherViewModel.swift */,
+				FD1BE09F210697DD00A1B621 /* LocationViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				FDE439B220FD81DF004B12C1 /* LocationFinderViewController.swift in Sources */,
 				FD32A9DB20FD92AD00923EDB /* Weather.xcdatamodeld in Sources */,
 				FD32A9D820FD921100923EDB /* LocationGeocoder.swift in Sources */,
+				FD1BE0A0210697DD00A1B621 /* LocationViewModel.swift in Sources */,
 				FDC2572A2105296F0046D82C /* LocationTableViewController.swift in Sources */,
 				FDE4399720FD6738004B12C1 /* MainViewController.swift in Sources */,
 				FD3F78EA210624C30000562E /* WeatherDetailViewController.swift in Sources */,

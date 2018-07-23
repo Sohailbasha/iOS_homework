@@ -70,13 +70,11 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let location = fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
         delegate?.didSelect(location: location)
         self.dismiss(animated: true, completion: nil)
     }
-    
     
     func getPlacemark(location: Location, completion: @escaping(_ location: String) -> ()) {
         LocationGeocoder.geolocate(location: location) { (placemark, error) in
