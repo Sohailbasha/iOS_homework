@@ -4,7 +4,6 @@ import CoreData
 class LocationTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var delegate: LocationSelectDelegate?
-    var navBar = UINavigationBar()
     
     lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
@@ -29,28 +28,11 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "locationCell")
         self.view.addSubview(tableView)
-        
-        navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
-        navBar.delegate = self
         self.title = "Locations"
-        self.view.addSubview(navBar)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showAddLocationsAlert))
 
-        
-//        let navItem = UINavigationItem(title: "Locations");
-//        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
-//                                       target: nil,
-//                                       action: #selector(something))
-//
-//        let addItem = UIBarButtonItem(barButtonSystemItem: .search,
-//                                      target: nil,
-//                                      action: #selector(somethingElse))
-//
-//        navItem.rightBarButtonItem = addItem
-//        navItem.leftBarButtonItem = doneItem
-//        navBar.setItems([navItem], animated: false)
-
-        
-        
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -63,17 +45,15 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         super.viewWillLayoutSubviews()
         tableView.frame = self.view.frame
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        navBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-
     }
     
     
     
-    @objc func something() {
+    @objc func dismissView() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func somethingElse() {
+    @objc func showAddLocationsAlert() {
         Alert.showAddLocationAlert(in: self)
     }
     
