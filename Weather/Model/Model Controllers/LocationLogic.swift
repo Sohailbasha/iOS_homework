@@ -5,13 +5,14 @@ class LocationLogic {
     
     static let sharedInstance = LocationLogic()
     
-    var locations: [Location] {
+    var locations: [LocationViewModel] {
         let request: NSFetchRequest<Location> = Location.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
         request.sortDescriptors = [sortDescriptor]
         let locationsArray = (try? CoreDataStack.context.fetch(request)) ?? []
-        return locationsArray.map({LocationViewModel(location: $0)})
-        return (try? CoreDataStack.context.fetch(request)) ?? []
+        let vms = locationsArray.compactMap({LocationViewModel(location: $0)})
+        return vms
+        //        return (try? CoreDataStack.context.fetch(request)) ?? []
     }
     
     func createLocation(isCurrentLocation: Bool, lat: Double, lon: Double) {

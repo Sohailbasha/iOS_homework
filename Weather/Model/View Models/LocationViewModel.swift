@@ -9,7 +9,6 @@ struct LocationViewModel {
         self.location = location
     }
     
-    
     func getCityName(completion: @escaping(_ location: String) -> ()) {
         LocationGeocoder.geolocate(location: self.location) { (placemark, error) in
             guard let city = placemark?.locality else { return }
@@ -18,5 +17,4 @@ struct LocationViewModel {
             completion(locationName)
         }
     }
-    
 }

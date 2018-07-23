@@ -33,16 +33,21 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let location = self.location {
-            self.getWeatherDataFor(location: location)
+        if let location = self.locationVM {
+            self.getWeatherDataFor(location: location.location)
         }
         if LocationLogic.sharedInstance.locations.isEmpty {
-            print("LOCATIONS IS EMPTY")
+            // LOCATION IS EMPTY
             performSegue(withIdentifier: "findLocationSegue", sender: self)
         } else {
-            print("LOCATION IS NOT EMPTY")
-            guard let location = LocationLogic.sharedInstance.locations.first else { return }
-            self.location = location
+            // LOCATION IS NOT EMPTY
+            if let locationVM = locationVM {
+                self.locationVM = locationVM
+            } else {
+                guard let locationVM = LocationLogic.sharedInstance.locations.first else { return }
+                self.locationVM = locationVM
+            }
+           
         }
     }
     
@@ -53,18 +58,12 @@ class MainViewController: UIViewController {
         }
     }
     
-    var location: Location? {
+    var locationVM: LocationViewModel? {
         didSet {
-            if let location = location {
-                self.getWeatherDataFor(location: location)
-                LocationGeocoder.geolocate(location: location) { (placemark, error) in
-                    guard let placemark = placemark else { return }
-                    DispatchQueue.main.async {
-                        self.title = placemark.locality!
-                    }
-                }
+            if let locationViewModel = locationVM {
+                self.getWeatherDataFor(location: locationViewModel.location)
+                self.setTitle(for: locationViewModel)
             }
-            
         }
     }
     
@@ -108,6 +107,12 @@ extension MainViewController {
         navBarOnModal.modalPresentationStyle = .overCurrentContext
         self.present(navBarOnModal, animated: true, completion: nil)
     }
+    
+    func setTitle(for locationVM: LocationViewModel) {
+        locationVM.getCityName(completion: { (locationName) in
+            self.title = locationName
+        })
+    }
 
 }
 
@@ -139,6 +144,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 extension MainViewController: LocationSelectDelegate {
     func didSelect(location: Location) {
-        self.location = location
+        let locationViewModel = LocationViewModel(location: location)
+        self.locationVM = locationViewModel
     }
 }
