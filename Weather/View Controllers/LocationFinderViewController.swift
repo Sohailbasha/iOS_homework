@@ -6,7 +6,7 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
-    let locationManager = CLLocationManager()
+    var locationManager: CLLocationManager!
     
     var currentLocation: CLLocation? {
         didSet {
@@ -24,6 +24,8 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
         self.commonInit()
     }
     
@@ -43,9 +45,7 @@ extension LocationFinderViewController {
     
     @objc func fetchLocation() {
         locationManager.requestWhenInUseAuthorization()
-        
         if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             locationManager.startUpdatingLocation()
         }

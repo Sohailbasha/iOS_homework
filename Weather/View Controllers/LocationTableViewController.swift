@@ -17,8 +17,7 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
                                                                     width: UIScreen.main.bounds.width,
                                                                     height: 44))
         
-        self.title = "SomeTitle"
-        let navItem = UINavigationItem(title: "SomeTitle");
+        let navItem = UINavigationItem(title: "Locations");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
                                        target: nil,
                                        action: #selector(something))
@@ -31,24 +30,6 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         navItem.leftBarButtonItem = doneItem
         navBar.setItems([navItem], animated: false)
         self.view.addSubview(navBar)
- 
-        
-        /*
-        let vc = LocationTableViewController()
-        let aObjNavi = UINavigationController(rootViewController: vc)
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done,
-                                       target: nil,
-                                       action: #selector(something))
-        
-        let addItem = UIBarButtonItem(barButtonSystemItem: .search,
-                                      target: nil,
-                                      action: #selector(somethingElse))
-        
-        
-        let navigationBarView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 55))
-        navigationBarView.backgroundColor = .cyan
-        self.view.addSubview(navigationBarView)
-        */
        
         fetchedResultsController.delegate = self
         do {
@@ -88,11 +69,8 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     
     let fetchedResultsController: NSFetchedResultsController<Location> = {
         let fetchRequest: NSFetchRequest<Location> = Location.fetchRequest()
-        
-        let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: true)
-        
+        let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
-        
         return NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
     }()
 
