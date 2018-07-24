@@ -2,7 +2,19 @@ import UIKit
 import CoreLocation
 
 class LocationFinderViewController: UIViewController, CLLocationManagerDelegate {
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.view.backgroundColor = .white
+        self.commonInit()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+    }
+    
     var locateMeButton = UIButton()
     var enterLocationButton = UIButton()
     var stackView = UIStackView()
@@ -21,19 +33,6 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .white
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        self.commonInit()
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        stackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        stackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-    }
 }
 
 // MARK: - Helper Methods
@@ -44,6 +43,8 @@ extension LocationFinderViewController {
     }
     
     @objc func fetchLocation() {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers

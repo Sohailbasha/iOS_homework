@@ -1,63 +1,62 @@
 import UIKit
 
 class MainViewController: UIViewController {
-
-    private let cellID = "detailCell"
-    let kSidePadding: CGFloat = 20
-    private var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.largeTitleDisplayMode = .always
-        
-        self.view.addSubview(collectionView)
-        collectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
-        activityIndicator.center = self.view.center
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
+        setupNavBar()
+        setupCollectionView()
+        setupActivityIndicator()
         activityIndicator.startAnimating()
-        
-        
-        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(locationsList))
-        
-        self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let location = self.locationVM {
+        if let location = self.locationViewModel {
             self.getWeatherDataFor(location: location.location)
         }
+        
         if LocationLogic.sharedInstance.locations.isEmpty {
-            // LOCATION IS EMPTY
+            // IF NO LOCATIONS EXIST
             performSegue(withIdentifier: "findLocationSegue", sender: self)
         } else {
-            // LOCATION IS NOT EMPTY
-            if let locationVM = locationVM {
-                self.locationVM = locationVM
+            // IF LOCATIONS EXIST
+            if let locationVM = locationViewModel {
+                // IF VC HOLDS LOCATION (returning from detail)
+                self.locationViewModel = locationVM
             } else {
+                // IF VC DOES NOT HOLD LOCAITON (initially set)
                 guard let locationVM = LocationLogic.sharedInstance.locations.first else { return }
-                self.locationVM = locationVM
+                self.locationViewModel = locationVM
             }
-           
         }
     }
     
-    // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "findLocationSegue" {
-            // do something
+    private let cellID = "detailCell"
+    private let kCellSidePadding: CGFloat = 20
+    private var activityIndicator: UIActivityIndicatorView!
+    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action:#selector(handleRefresh(_:)),
+                                 for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.darkGray
+        return refreshControl
+    }()
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        if let locationViewModel = locationViewModel {
+            self.getWeatherDataFor(location: locationViewModel.location)
         }
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
     }
     
-    var locationVM: LocationViewModel? {
+    var locationViewModel: LocationViewModel? {
         didSet {
-            if let locationViewModel = locationVM {
+            if let locationViewModel = locationViewModel {
                 self.getWeatherDataFor(location: locationViewModel.location)
                 self.setTitle(for: locationViewModel)
             }
@@ -86,7 +85,6 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - Helper Methods
-
 extension MainViewController {
     
     func getWeatherDataFor(location: Location) {
@@ -105,14 +103,38 @@ extension MainViewController {
         self.present(navBarOnModal, animated: true, completion: nil)
     }
     
+    // Set Up Methods //
+    
     func setTitle(for locationVM: LocationViewModel) {
         locationVM.getCityName(completion: { (locationName) in
             self.title = locationName
         })
     }
+    
+    func setupCollectionView() {
+        self.view.addSubview(collectionView)
+        collectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: cellID)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.refreshControl = refreshControl
+    }
+    
+    func setupNavBar() {
+        self.navigationItem.largeTitleDisplayMode = .always
+        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(locationsList))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+    }
+    
+    func setupActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+    }
 
 }
 
+// MARK: - Collection View Datasource, Delegate, DelegateFlowlayout
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout{
  
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -128,7 +150,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width - kSidePadding, height: 100)
+        return CGSize(width: UIScreen.main.bounds.width - kCellSidePadding, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -139,9 +161,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     
 }
 
+// MARK: - Location Select Delegate
 extension MainViewController: LocationSelectDelegate {
     func didSelect(location: Location) {
         let locationViewModel = LocationViewModel(location: location)
-        self.locationVM = locationViewModel
+        self.locationViewModel = locationViewModel
     }
 }
