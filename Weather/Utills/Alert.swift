@@ -3,25 +3,27 @@ import UIKit
 
 struct Alert {
     
-    // ALERTS FOR ERRORS //
-    
+    // Enter Location
     static func showEnterLocationAlert(in vc: UIViewController) {
         self.showBasicLocationAlert(in: vc, with: "Enter a location", message: "To recieve up-to-date weather forecasts")
     }
     
+    // Add Location
     static func showAddLocationAlert(in vc: UIViewController) {
         self.showBasicLocationAlert(in: vc, with: "Add a new location")
     }
     
+    // Wrong input error
     static func showLocationInputErrorAlert(in vc: UIViewController, inputString: String) {
         self.showErrorAlert(in: vc, with: "Unable to find \(inputString)")
     }
     
-    static func requestAuthorizationAlert(in vc: UIViewController) {
-        self.showErrorAlert(in: vc, with: "Please allow app to use location data in settings")
+    // Request authorization (if you haven't yet accepted)
+    static func showAuthorizationAlert(in vc: UIViewController) {
+        self.authorizationAlert(vc: vc)
     }
     
-
+    
     private static func showBasicLocationAlert(in vc: UIViewController, with title: String, message: String? = nil) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         var tf: UITextField?
@@ -48,6 +50,22 @@ struct Alert {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(okayAction)
         alertController.addAction(cancelAction)
+        
+        vc.present(alertController, animated: true, completion: nil)
+    }
+    
+    private static func authorizationAlert(vc: UIViewController) {
+        let alertController = UIAlertController(title: "Enable location services", message: "We require your current location while you use this feature.", preferredStyle: .alert)
+        
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        let changeSettingsAction = UIAlertAction(title: "Change Settings", style: .default) { (_) in
+            if let appSettings = URL(string: UIApplicationOpenSettingsURLString) {
+                UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+            }
+        }
+        
+        alertController.addAction(dismissAction)
+        alertController.addAction(changeSettingsAction)
         
         vc.present(alertController, animated: true, completion: nil)
     }
