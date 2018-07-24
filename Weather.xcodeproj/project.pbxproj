@@ -18,6 +18,8 @@
 		FD3F78EA210624C30000562E /* WeatherDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3F78E9210624C30000562E /* WeatherDetailViewController.swift */; };
 		FD63041A210277C5002D14B2 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD630419210277C5002D14B2 /* WeatherViewModel.swift */; };
 		FD63041C2102780C002D14B2 /* WeatherViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD63041B2102780C002D14B2 /* WeatherViewModelTest.swift */; };
+		FD6358A22107DFDD00764B2F /* LocationViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6358A12107DFDD00764B2F /* LocationViewModelTest.swift */; };
+		FD6358A42107E08300764B2F /* LocationLogicTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6358A32107E08300764B2F /* LocationLogicTest.swift */; };
 		FDC2572A2105296F0046D82C /* LocationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC257292105296F0046D82C /* LocationTableViewController.swift */; };
 		FDE2391320FE5106006E356B /* LocationLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391220FE5106006E356B /* LocationLogic.swift */; };
 		FDE2391620FE6CEA006E356B /* WeatherLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE2391520FE6CEA006E356B /* WeatherLogic.swift */; };
@@ -56,6 +58,9 @@
 		FD3F78E9210624C30000562E /* WeatherDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailViewController.swift; sourceTree = "<group>"; };
 		FD630419210277C5002D14B2 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		FD63041B2102780C002D14B2 /* WeatherViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModelTest.swift; sourceTree = "<group>"; };
+		FD6358A02107DFC700764B2F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FD6358A12107DFDD00764B2F /* LocationViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModelTest.swift; sourceTree = "<group>"; };
+		FD6358A32107E08300764B2F /* LocationLogicTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLogicTest.swift; sourceTree = "<group>"; };
 		FDC257292105296F0046D82C /* LocationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewController.swift; sourceTree = "<group>"; };
 		FDE2391220FE5106006E356B /* LocationLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLogic.swift; sourceTree = "<group>"; };
 		FDE2391520FE6CEA006E356B /* WeatherLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLogic.swift; sourceTree = "<group>"; };
@@ -135,6 +140,7 @@
 		FDE4397820FD6591004B12C1 = {
 			isa = PBXGroup;
 			children = (
+				FD6358A02107DFC700764B2F /* README.md */,
 				FDE4398320FD6591004B12C1 /* Weather */,
 				FDE439A120FD79D8004B12C1 /* WeatherTests */,
 				FDE4398220FD6591004B12C1 /* Products */,
@@ -195,6 +201,8 @@
 				FD63041B2102780C002D14B2 /* WeatherViewModelTest.swift */,
 				FDE2391720FE7EE5006E356B /* LocationTests.swift */,
 				FDFA5D3721010675003FAD09 /* TestWeatherLogic.swift */,
+				FD6358A12107DFDD00764B2F /* LocationViewModelTest.swift */,
+				FD6358A32107E08300764B2F /* LocationLogicTest.swift */,
 			);
 			path = WeatherTests;
 			sourceTree = "<group>";
@@ -329,7 +337,9 @@
 				FDE2391820FE7EE5006E356B /* LocationTests.swift in Sources */,
 				FD63041C2102780C002D14B2 /* WeatherViewModelTest.swift in Sources */,
 				FDE439AC20FD7A00004B12C1 /* MainViewControllerTests.swift in Sources */,
+				FD6358A42107E08300764B2F /* LocationLogicTest.swift in Sources */,
 				FDFA5D3821010675003FAD09 /* TestWeatherLogic.swift in Sources */,
+				FD6358A22107DFDD00764B2F /* LocationViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +424,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -468,7 +478,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
