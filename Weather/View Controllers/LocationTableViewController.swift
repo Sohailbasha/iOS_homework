@@ -9,6 +9,9 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         setupTableview()
         setupNavBarAndBarButtons()
         
+        self.locationManager = CLLocationManager()
+        self.locationManager.delegate = self
+
         fetchedResultsController.delegate = self
         do {
             try fetchedResultsController.performFetch()
@@ -63,14 +66,19 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     }
     
     @objc func getCurrentLocation() {
-        self.locationManager = CLLocationManager()
-        self.locationManager.delegate = self
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
+        if(isLocationPermissionGranted()) {
             self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             self.locationManager.startUpdatingLocation()
+        } else {
+            Alert.showAuthorizationAlert(in: self)
         }
     }
+    
+    func isLocationPermissionGranted() -> Bool {
+        guard CLLocationManager.locationServicesEnabled() else { return false }
+        return [.authorizedAlways, .authorizedWhenInUse].contains(CLLocationManager.authorizationStatus())
+    }
+
     
     func getPlacemark(location: Location, completion: @escaping(_ location: String) -> ()) {
         LocationGeocoder.geolocate(location: location) { (placemark, error) in
@@ -178,7 +186,7 @@ extension LocationTableViewController {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
+            
         }
     }
     
