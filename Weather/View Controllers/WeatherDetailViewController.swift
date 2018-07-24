@@ -29,7 +29,7 @@ class WeatherDetailViewController: UIViewController {
     }()
     
     var imageView = UIImageView()
-    var middleStackView = UIStackView()
+    var outerStackView = UIStackView()
     var innerStackView = UIStackView()
     
     var maxTempLabel: UILabel = {
@@ -73,18 +73,16 @@ class WeatherDetailViewController: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         self.view.backgroundColor = .white
         self.view.addSubview(scrollView)
+        
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-//        self.view.addSubview(middleStackView)
-        scrollView.addSubview(middleStackView)
+        scrollView.addSubview(outerStackView)
         
         summaryLabel.frame = .zero
-//        self.view.addSubview(summaryLabel)
         scrollView.addSubview(summaryLabel)
         
         precipLabel.frame = .zero
-//        self.view.addSubview(precipLabel)
         scrollView.addSubview(precipLabel)
         
         setupScrolLView()
@@ -93,25 +91,9 @@ class WeatherDetailViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        innerStackView.axis = .vertical
-        innerStackView.distribution = .equalSpacing
-        innerStackView.alignment = .center
-        innerStackView.translatesAutoresizingMaskIntoConstraints = false
-        innerStackView.addArrangedSubview(maxTempLabel)
-        innerStackView.addArrangedSubview(minTempLabel)
-        
-        middleStackView.axis = .horizontal
-        middleStackView.distribution = .equalSpacing
-        middleStackView.alignment = .center
-        middleStackView.spacing = 5
-        middleStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        middleStackView.addArrangedSubview(imageView)
-        middleStackView.addArrangedSubview(innerStackView)
-        
-        middleStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
-        middleStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.view.safeAreaInsets.top + 10).isActive = true
-        
+        setupInnerStackView()
+        setupOuterStackView()
+       
         imageView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
         
@@ -135,7 +117,31 @@ class WeatherDetailViewController: UIViewController {
         scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-
     }
+    
+    func setupInnerStackView() {
+        innerStackView.axis = .vertical
+        innerStackView.distribution = .equalSpacing
+        innerStackView.alignment = .center
+        innerStackView.translatesAutoresizingMaskIntoConstraints = false
+        innerStackView.addArrangedSubview(maxTempLabel)
+        innerStackView.addArrangedSubview(minTempLabel)
+    }
+    
+    func setupOuterStackView() {
+        outerStackView.axis = .horizontal
+        outerStackView.distribution = .equalSpacing
+        outerStackView.alignment = .center
+        outerStackView.spacing = 5
+        outerStackView.translatesAutoresizingMaskIntoConstraints = false
+        outerStackView.addArrangedSubview(imageView)
+        outerStackView.addArrangedSubview(innerStackView)
+    }
+    
+    func setupConstraints() {
+        
+    }
+    
+    
 }
 
