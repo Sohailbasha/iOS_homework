@@ -1,9 +1,24 @@
 import UIKit
 import CoreData
+import CoreLocation
 
-class LocationTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
+class LocationTableViewController: UIViewController, NSFetchedResultsControllerDelegate, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
 
     var delegate: LocationSelectDelegate?
+    var locationManager: CLLocationManager!
+    
+    var currentLocation: CLLocation? {
+        didSet {
+            if let currentLocation = self.currentLocation {
+                DispatchQueue.main.async {
+
+                    LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
+                                                                lat: currentLocation.coordinate.latitude,
+                                                                lon: currentLocation.coordinate.longitude)
+                }
+            }
+        }
+    }
     
     lazy var tableView: UITableView = {
         let tv = UITableView(frame: .zero, style: .plain)
@@ -54,7 +69,7 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     }
     
     @objc func showAddLocationsAlert() {
-        Alert.showAddLocationAlert(in: self)
+        self.showBasicLocationAlert(in: self, with: "Add a new location")
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -74,6 +89,14 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         guard let location = fetchedResultsController.fetchedObjects?[indexPath.row] else { return }
         delegate?.didSelect(location: location)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let location = fetchedResultsController.fetchedObjects?[indexPath.row] {
+                LocationLogic.sharedInstance.delete(location: location)
+            }
+        }
     }
     
     func getPlacemark(location: Location, completion: @escaping(_ location: String) -> ()) {
@@ -131,6 +154,67 @@ extension LocationTableViewController: UIBarPositioningDelegate {
     func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }
+}
+
+extension LocationTableViewController {
+    
+    func showBasicLocationAlert(in vc: UIViewController, with title: String, message: String? = nil) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        var tf: UITextField?
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter zipcode, city, or state"
+            tf = textField
+        }
+        
+        // add aciton
+        let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
+            if let text = tf?.text, !text.isEmpty {
+                LocationGeocoder.getLocationData(from: text, completion: { (location, error) in
+                    if let _ = error {
+                        Alert.showAddLocationAlert(in: vc)
+                    }
+                    
+                    if let location = location {
+                        LocationLogic.sharedInstance.createLocation(isCurrentLocation: false, lat: location.coordinate.latitude, lon: location.coordinate.longitude)
+                    }
+                })
+            }
+        }
+        
+        // locate aciton
+        let currentLocationAction = UIAlertAction(title: "Use Current Location", style: .default) { (_) in
+            self.locationManager = CLLocationManager()
+            self.locationManager.delegate = self
+            self.locationManager.requestWhenInUseAuthorization()
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+                self.locationManager.startUpdatingLocation()
+            }
+        }
+        
+        // cancel action
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(okayAction)
+        alertController.addAction(cancelAction)
+        alertController.addAction(currentLocationAction)
+        
+        vc.present(alertController, animated: true, completion: nil)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            self.currentLocation = location
+        }
+        locationManager.stopUpdatingLocation()
+    }
+    
 }
 
 protocol LocationSelectDelegate {
