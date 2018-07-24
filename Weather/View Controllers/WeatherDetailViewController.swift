@@ -13,8 +13,11 @@ class WeatherDetailViewController: UIViewController {
         }
     }
     
-    var imageView = UIImageView()
     
+    var scrollView = UIScrollView()
+    var contentView = UIView()
+    
+    var imageView = UIImageView()
     var middleStackView = UIStackView()
     var innerStackView = UIStackView()
     
@@ -39,7 +42,7 @@ class WeatherDetailViewController: UIViewController {
     var summaryLabel: UILabel = {
         let label = UILabel()
         label.text = " - "
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.font = UIFont.boldSystemFont(ofSize: 40)
         label.textColor = #colorLiteral(red: 0.1254901961, green: 0.4705882353, blue: 0.862745098, alpha: 1)
         return label
@@ -71,7 +74,6 @@ class WeatherDetailViewController: UIViewController {
         self.view.addSubview(precipLabel)
         
     }
-    
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -109,7 +111,7 @@ class WeatherDetailViewController: UIViewController {
 
         summaryLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 100)
         summaryLabel.center = self.view.center
-
+        summaryLabel.sizeToFit()
         precipLabel.frame = CGRect(x: summaryLabel.frame.minX, y: summaryLabel.frame.maxY + 10, width: self.view.frame.width - 20, height: 100)
     }
     
@@ -117,3 +119,4 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 }
+

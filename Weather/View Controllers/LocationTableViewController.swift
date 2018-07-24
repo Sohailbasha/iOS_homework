@@ -11,8 +11,6 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         didSet {
             if let currentLocation = self.currentLocation {
                 DispatchQueue.main.async {
-//                    let location = Location(isCurrentLocation: true, lat: currentLocation.coordinate.latitude, lon: currentLocation.coordinate.longitude)
-                    
                     LocationLogic.sharedInstance.updateLocation(isCurrentLocation: true,
                                                                 lat: currentLocation.coordinate.latitude,
                                                                 lon: currentLocation.coordinate.longitude)
@@ -66,7 +64,11 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
     
     
     @objc func dismissView() {
-        self.dismiss(animated: true, completion: nil)
+        if let _ = fetchedResultsController.fetchedObjects?.isEmpty {
+            return
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func showAddLocationsAlert() {
@@ -173,7 +175,7 @@ extension LocationTableViewController {
             if let text = tf?.text, !text.isEmpty {
                 LocationGeocoder.getLocationData(from: text, completion: { (location, error) in
                     if let _ = error {
-                        Alert.showAddLocationAlert(in: vc)
+                        Alert.showLocationInputErrorAlert(in: self, inputString: "Unable to find location")
                     }
                     
                     if let location = location {

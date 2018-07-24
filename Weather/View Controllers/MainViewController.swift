@@ -22,10 +22,7 @@ class MainViewController: UIViewController {
         activityIndicator.startAnimating()
         
         
-        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"),
-                                                style: .plain,
-                                                target: self,
-                                                action: #selector(locationsList))
+        let leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "list"), style: .plain, target: self, action: #selector(locationsList))
         
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
     }
