@@ -7,6 +7,10 @@ class LocationFinderViewController: UIViewController, CLLocationManagerDelegate 
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.commonInit()
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
     }
     
     override func viewWillLayoutSubviews() {
@@ -43,13 +47,17 @@ extension LocationFinderViewController {
     }
     
     @objc func fetchLocation() {
-        locationManager = CLLocationManager()
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
+        if isLocationPermissionGranted() {
             locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
             locationManager.startUpdatingLocation()
+        } else {
+            Alert.showAuthorizationAlert(in: self)
         }
+    }
+    
+    func isLocationPermissionGranted() -> Bool {
+        guard CLLocationManager.locationServicesEnabled() else { return false }
+        return [.authorizedAlways, .authorizedWhenInUse].contains(CLLocationManager.authorizationStatus())
     }
     
     func showInputLocationAlert(with title: String, message: String? = nil) {
@@ -66,6 +74,7 @@ extension LocationFinderViewController {
                     if let _ = error {
                         Alert.showAddLocationAlert(in: self)
                     }
+                    
                     if let coreLocation = cllocation {
                         LocationLogic.sharedInstance.createLocation(isCurrentLocation: false,
                                                                     lat: coreLocation.coordinate.latitude,
@@ -76,6 +85,7 @@ extension LocationFinderViewController {
                 })
             }
         }
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(okayAction)
         alertController.addAction(cancelAction)
@@ -86,11 +96,6 @@ extension LocationFinderViewController {
 
 // MARK: - Location Manager Methods
 extension LocationFinderViewController {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            locationManager.startUpdatingLocation()
-        }
-    }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
