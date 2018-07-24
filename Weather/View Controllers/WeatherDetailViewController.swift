@@ -13,9 +13,20 @@ class WeatherDetailViewController: UIViewController {
         }
     }
     
+    lazy var scrollView: UIScrollView = {
+        let view = UIScrollView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentSize.height = UIScreen.main.bounds.height
+        view.backgroundColor = .white
+        return view
+    }()
     
-    var scrollView = UIScrollView()
-    var contentView = UIView()
+    
+    var contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     var imageView = UIImageView()
     var middleStackView = UIStackView()
@@ -61,18 +72,22 @@ class WeatherDetailViewController: UIViewController {
         super.viewDidLoad()
         self.navigationItem.largeTitleDisplayMode = .never
         self.view.backgroundColor = .white
-   
+        self.view.addSubview(scrollView)
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.view.addSubview(middleStackView)
+//        self.view.addSubview(middleStackView)
+        scrollView.addSubview(middleStackView)
         
         summaryLabel.frame = .zero
-        self.view.addSubview(summaryLabel)
+//        self.view.addSubview(summaryLabel)
+        scrollView.addSubview(summaryLabel)
         
         precipLabel.frame = .zero
-        self.view.addSubview(precipLabel)
+//        self.view.addSubview(precipLabel)
+        scrollView.addSubview(precipLabel)
         
+        setupScrolLView()
     }
     
     override func viewWillLayoutSubviews() {
@@ -94,8 +109,8 @@ class WeatherDetailViewController: UIViewController {
         middleStackView.addArrangedSubview(imageView)
         middleStackView.addArrangedSubview(innerStackView)
         
-        middleStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        middleStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: self.view.safeAreaInsets.top + 10).isActive = true
+        middleStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        middleStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.view.safeAreaInsets.top + 10).isActive = true
         
         imageView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
@@ -115,8 +130,12 @@ class WeatherDetailViewController: UIViewController {
         precipLabel.frame = CGRect(x: summaryLabel.frame.minX, y: summaryLabel.frame.maxY + 10, width: self.view.frame.width - 20, height: 100)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    func setupScrolLView() {
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+
     }
 }
 
