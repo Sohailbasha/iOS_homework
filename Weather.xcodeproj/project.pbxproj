@@ -126,8 +126,8 @@
 		FDE2391420FE5109006E356B /* Model Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FDE2391220FE5106006E356B /* LocationLogic.swift */,
 				FDE2391520FE6CEA006E356B /* WeatherLogic.swift */,
+				FDE2391220FE5106006E356B /* LocationLogic.swift */,
 			);
 			path = "Model Controllers";
 			sourceTree = "<group>";

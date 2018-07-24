@@ -62,20 +62,20 @@ extension LocationFinderViewController {
         }
         let okayAction = UIAlertAction(title: "Ok", style: .default) { (_) in
             if let text = tf?.text, !text.isEmpty {
-                LocationGeocoder.getLocationData(from: text, completion: { (location, error) in
+                LocationGeocoder.getLocationData(from: text, completion: { (cllocation, error) in
                     if let _ = error {
                         Alert.showAddLocationAlert(in: self)
                     }
-                    if let location = location {
-                            LocationLogic.sharedInstance.createLocation(isCurrentLocation: false,
-                                                                        lat: location.coordinate.latitude,
-                                                                        lon: location.coordinate.longitude)
+                    if let coreLocation = cllocation {
+                        LocationLogic.sharedInstance.createLocation(isCurrentLocation: false,
+                                                                    lat: coreLocation.coordinate.latitude,
+                                                                    lon: coreLocation.coordinate.longitude)
+                        
+                        self.dismiss(animated: true, completion: nil)
                     }
                 })
             }
-            self.dismiss(animated: true, completion: nil)
         }
-        
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(okayAction)
         alertController.addAction(cancelAction)

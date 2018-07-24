@@ -68,12 +68,17 @@ class WeatherDetailViewController: UIViewController {
         return label
     }()
     
+    private let kTempLabelWidthAnchor: CGFloat = 70
+    private let kTempLabelHeightAnchor: CGFloat = 50
+    private let kSidePadding: CGFloat = 20
+    private let kTopPadding: CGFloat = 10
+    private let kDetailLabelHeight: CGFloat = 100
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.largeTitleDisplayMode = .never
         self.view.backgroundColor = .white
         self.view.addSubview(scrollView)
-        
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -93,30 +98,33 @@ class WeatherDetailViewController: UIViewController {
         
         setupInnerStackView()
         setupOuterStackView()
-       
+
+        
+        
+        outerStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor).isActive = true
+        outerStackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: self.view.safeAreaInsets.top + kTopPadding).isActive = true
+        
         imageView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
         imageView.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.45).isActive = true
         
-        maxTempLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        maxTempLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        maxTempLabel.widthAnchor.constraint(equalToConstant: kTempLabelWidthAnchor).isActive = true
+        maxTempLabel.heightAnchor.constraint(equalToConstant: kTempLabelHeightAnchor).isActive = true
         
-        minTempLabel.widthAnchor.constraint(equalToConstant: 70).isActive = true
-        minTempLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        minTempLabel.widthAnchor.constraint(equalToConstant: kTempLabelWidthAnchor).isActive = true
+        minTempLabel.heightAnchor.constraint(equalToConstant: kTempLabelHeightAnchor).isActive = true
         
-        innerStackView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        innerStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-
-        summaryLabel.frame = CGRect(x: 0, y: 0, width: self.view.frame.width - 20, height: 100)
+        summaryLabel.frame = CGRect(x: 0,
+                                    y: 0,
+                                    width: self.view.frame.width - kSidePadding,
+                                    height: kDetailLabelHeight)
+        
         summaryLabel.center = self.view.center
         summaryLabel.sizeToFit()
-        precipLabel.frame = CGRect(x: summaryLabel.frame.minX, y: summaryLabel.frame.maxY + 10, width: self.view.frame.width - 20, height: 100)
-    }
-    
-    func setupScrolLView() {
-        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        precipLabel.frame = CGRect(x: summaryLabel.frame.minX,
+                                   y: summaryLabel.frame.maxY + kTopPadding,
+                                   width: self.view.frame.width - kSidePadding,
+                                   height: kDetailLabelHeight)
     }
     
     func setupInnerStackView() {
@@ -138,10 +146,11 @@ class WeatherDetailViewController: UIViewController {
         outerStackView.addArrangedSubview(innerStackView)
     }
     
-    func setupConstraints() {
-        
+    func setupScrolLView() {
+        scrollView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
-    
-    
 }
 
