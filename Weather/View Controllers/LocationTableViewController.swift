@@ -11,8 +11,9 @@ class LocationTableViewController: UIViewController, NSFetchedResultsControllerD
         didSet {
             if let currentLocation = self.currentLocation {
                 DispatchQueue.main.async {
-
-                    LocationLogic.sharedInstance.createLocation(isCurrentLocation: true,
+//                    let location = Location(isCurrentLocation: true, lat: currentLocation.coordinate.latitude, lon: currentLocation.coordinate.longitude)
+                    
+                    LocationLogic.sharedInstance.updateLocation(isCurrentLocation: true,
                                                                 lat: currentLocation.coordinate.latitude,
                                                                 lon: currentLocation.coordinate.longitude)
                 }

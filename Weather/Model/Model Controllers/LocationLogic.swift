@@ -12,12 +12,30 @@ class LocationLogic {
         let locationsArray = (try? CoreDataStack.context.fetch(request)) ?? []
         let vms = locationsArray.compactMap({LocationViewModel(location: $0)})
         return vms
-        //        return (try? CoreDataStack.context.fetch(request)) ?? []
     }
     
     func createLocation(isCurrentLocation: Bool, lat: Double, lon: Double) {
         _ = Location(isCurrentLocation: isCurrentLocation, lat: lat, lon: lon)
         saveToPersistentStore()
+    }
+    
+    func updateLocation(isCurrentLocation: Bool, lat: Double, lon: Double) {
+        let request: NSFetchRequest<Location> = Location.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "isCurrentLocation", ascending: false)
+        request.sortDescriptors = [sortDescriptor]
+        let predicate = NSPredicate(format: "isCurrentLocation == %@", NSNumber(booleanLiteral: true))
+        request.predicate = predicate
+        
+        if let currentLocation = (try? CoreDataStack.context.fetch(request))?.first {
+            currentLocation.setValue(isCurrentLocation, forKey: "isCurrentLocation")
+            currentLocation.setValue(lat, forKey: "lat")
+            currentLocation.setValue(lon, forKey: "lon")
+            saveToPersistentStore()
+        } else {
+            createLocation(isCurrentLocation: isCurrentLocation, lat: lat, lon: lon)
+        }
+        
+        
     }
     
     func delete(location: Location) {
